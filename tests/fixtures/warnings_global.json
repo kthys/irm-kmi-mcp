@@ -1,0 +1,882 @@
+[
+  {
+    "icon_country": "BE",
+    "warningType": {
+      "id": "10",
+      "name": {
+        "nl": "Hitte",
+        "fr": "Chaleur",
+        "de": "Hitze",
+        "en": "Heat"
+      }
+    },
+    "text": {
+      "nl": "Vandaag wordt het op de meeste plaatsen warmer dan 30 graden. Donderdag en vrijdag wordt het nog wat warmer. In sommige streken kan het kwik tot 35 graden stijgen, waardoor we daar overgaan naar een oranje waarschuwing.\r\nDe waarschuwingsfase van het ozon- en hitteplan van de FOD Volksgezondheid blijft van kracht. \r\nVanaf het weekend wordt het minder warm.",
+      "fr": "Aujourd'hui, les maxima seront supérieurs à 30 degrés dans la plupart des régions. Jeudi et vendredi, il fera encore plus chaud. Dans certaines régions, les maxima seront proches de 35 degrés, ce qui nous amène à émettre une alerte orange dans ces régions. \r\nLa phase d'avertissement du SPF Santé publique est maintenue durant toute cette période. \r\nA partir du week-end, il fera moins chaud."
+    },
+    "legendUri": {
+      "nl": "https://app.meteo.be/services/appv4/?s=getWarningLegend&k=126b46df6cea20b8641320c6355858ab&wa=10&l=nl",
+      "fr": "https://app.meteo.be/services/appv4/?s=getWarningLegend&k=126b46df6cea20b8641320c6355858ab&wa=10&l=fr",
+      "de": "https://app.meteo.be/services/appv4/?s=getWarningLegend&k=126b46df6cea20b8641320c6355858ab&wa=10&l=de",
+      "en": "https://app.meteo.be/services/appv4/?s=getWarningLegend&k=126b46df6cea20b8641320c6355858ab&wa=10&l=en"
+    },
+    "region": [
+      {
+        "name": {
+          "nl": "Brussel",
+          "fr": "Bruxelles",
+          "en": "Brussels",
+          "de": "Brüssel"
+        },
+        "district": [
+          {
+            "region": {
+              "code": 6446,
+              "name": {
+                "nl": "Brussel",
+                "fr": "Bruxelles",
+                "en": "Brussels",
+                "de": "Brüssel"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-11T22:00:00+00:00",
+                "toTimestamp": "2026-08-12T22:00:00+00:00"
+              },
+              {
+                "level": "2",
+                "fromTimestamp": "2026-08-12T22:00:00+00:00",
+                "toTimestamp": "2026-08-13T22:00:00+00:00"
+              },
+              {
+                "level": "2",
+                "fromTimestamp": "2026-08-13T22:00:00+00:00",
+                "toTimestamp": "2026-08-14T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-14T22:00:00+00:00",
+                "toTimestamp": "2026-08-15T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-15T22:00:00+00:00",
+                "toTimestamp": "2026-08-16T22:00:00+00:00"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": {
+          "nl": "Wallonië",
+          "fr": "Wallonie",
+          "en": "Wallonia",
+          "de": "Wallonien"
+        },
+        "district": [
+          {
+            "region": {
+              "code": 6478,
+              "name": {
+                "nl": "Luik",
+                "fr": "Liège",
+                "en": "Liege",
+                "de": "Lüttich"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-11T22:00:00+00:00",
+                "toTimestamp": "2026-08-12T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-12T22:00:00+00:00",
+                "toTimestamp": "2026-08-13T22:00:00+00:00"
+              },
+              {
+                "level": "2",
+                "fromTimestamp": "2026-08-13T22:00:00+00:00",
+                "toTimestamp": "2026-08-14T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-14T22:00:00+00:00",
+                "toTimestamp": "2026-08-15T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-15T22:00:00+00:00",
+                "toTimestamp": "2026-08-16T22:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": 6432,
+              "name": {
+                "nl": "Henegouwen",
+                "fr": "Hainaut",
+                "en": "Hainaut",
+                "de": "Hennegau"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-11T22:00:00+00:00",
+                "toTimestamp": "2026-08-12T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-12T22:00:00+00:00",
+                "toTimestamp": "2026-08-13T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T22:00:00+00:00",
+                "toTimestamp": "2026-08-14T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-14T22:00:00+00:00",
+                "toTimestamp": "2026-08-15T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-15T22:00:00+00:00",
+                "toTimestamp": "2026-08-16T22:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": 6456,
+              "name": {
+                "nl": "Namen",
+                "fr": "Namur",
+                "en": "Namur",
+                "de": "Namür"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-11T22:00:00+00:00",
+                "toTimestamp": "2026-08-12T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-12T22:00:00+00:00",
+                "toTimestamp": "2026-08-13T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T22:00:00+00:00",
+                "toTimestamp": "2026-08-14T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-14T22:00:00+00:00",
+                "toTimestamp": "2026-08-15T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-15T22:00:00+00:00",
+                "toTimestamp": "2026-08-16T22:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": 6476,
+              "name": {
+                "nl": "Luxemburg",
+                "fr": "Luxembourg",
+                "en": "Luxembourg",
+                "de": "Luxemburg"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-11T22:00:00+00:00",
+                "toTimestamp": "2026-08-12T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-12T22:00:00+00:00",
+                "toTimestamp": "2026-08-13T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T22:00:00+00:00",
+                "toTimestamp": "2026-08-14T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-14T22:00:00+00:00",
+                "toTimestamp": "2026-08-15T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-15T22:00:00+00:00",
+                "toTimestamp": "2026-08-16T22:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": 6446,
+              "name": {
+                "nl": "Waals-Brabant",
+                "fr": "Brabant wallon",
+                "en": "Walloon Brabant",
+                "de": "Wallonisch-Brabant"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-11T22:00:00+00:00",
+                "toTimestamp": "2026-08-12T22:00:00+00:00"
+              },
+              {
+                "level": "2",
+                "fromTimestamp": "2026-08-12T22:00:00+00:00",
+                "toTimestamp": "2026-08-13T22:00:00+00:00"
+              },
+              {
+                "level": "2",
+                "fromTimestamp": "2026-08-13T22:00:00+00:00",
+                "toTimestamp": "2026-08-14T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-14T22:00:00+00:00",
+                "toTimestamp": "2026-08-15T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-15T22:00:00+00:00",
+                "toTimestamp": "2026-08-16T22:00:00+00:00"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": {
+          "nl": "Vlaanderen",
+          "fr": "Flandre",
+          "en": "Flanders",
+          "de": "Flandern"
+        },
+        "district": [
+          {
+            "region": {
+              "code": 6404,
+              "name": {
+                "nl": "Kust",
+                "fr": "Côte",
+                "en": "Coast",
+                "de": "Küste"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-11T22:00:00+00:00",
+                "toTimestamp": "2026-08-12T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-12T22:00:00+00:00",
+                "toTimestamp": "2026-08-13T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T22:00:00+00:00",
+                "toTimestamp": "2026-08-14T22:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": 6407,
+              "name": {
+                "nl": "West-Vlaanderen",
+                "fr": "Flandre-Occidentale",
+                "en": "West Flanders",
+                "de": "Westflandern"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-11T22:00:00+00:00",
+                "toTimestamp": "2026-08-12T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-12T22:00:00+00:00",
+                "toTimestamp": "2026-08-13T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T22:00:00+00:00",
+                "toTimestamp": "2026-08-14T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-14T22:00:00+00:00",
+                "toTimestamp": "2026-08-15T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-15T22:00:00+00:00",
+                "toTimestamp": "2026-08-16T22:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": 6431,
+              "name": {
+                "nl": "Oost-Vlaanderen",
+                "fr": "Flandre-Orientale",
+                "en": "East Flanders",
+                "de": "Ostflandern"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-11T22:00:00+00:00",
+                "toTimestamp": "2026-08-12T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-12T22:00:00+00:00",
+                "toTimestamp": "2026-08-13T22:00:00+00:00"
+              },
+              {
+                "level": "2",
+                "fromTimestamp": "2026-08-13T22:00:00+00:00",
+                "toTimestamp": "2026-08-14T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-14T22:00:00+00:00",
+                "toTimestamp": "2026-08-15T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-15T22:00:00+00:00",
+                "toTimestamp": "2026-08-16T22:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": 6450,
+              "name": {
+                "nl": "Antwerpen",
+                "fr": "Anvers",
+                "en": "Antwerp",
+                "de": "Antwerpen"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-11T22:00:00+00:00",
+                "toTimestamp": "2026-08-12T22:00:00+00:00"
+              },
+              {
+                "level": "2",
+                "fromTimestamp": "2026-08-12T22:00:00+00:00",
+                "toTimestamp": "2026-08-13T22:00:00+00:00"
+              },
+              {
+                "level": "2",
+                "fromTimestamp": "2026-08-13T22:00:00+00:00",
+                "toTimestamp": "2026-08-14T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-14T22:00:00+00:00",
+                "toTimestamp": "2026-08-15T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-15T22:00:00+00:00",
+                "toTimestamp": "2026-08-16T22:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": 6479,
+              "name": {
+                "nl": "Limburg",
+                "fr": "Limbourg",
+                "en": "Limburg",
+                "de": "Limburg"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-11T22:00:00+00:00",
+                "toTimestamp": "2026-08-12T22:00:00+00:00"
+              },
+              {
+                "level": "2",
+                "fromTimestamp": "2026-08-12T22:00:00+00:00",
+                "toTimestamp": "2026-08-13T22:00:00+00:00"
+              },
+              {
+                "level": "2",
+                "fromTimestamp": "2026-08-13T22:00:00+00:00",
+                "toTimestamp": "2026-08-14T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-14T22:00:00+00:00",
+                "toTimestamp": "2026-08-15T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-15T22:00:00+00:00",
+                "toTimestamp": "2026-08-16T22:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": 6446,
+              "name": {
+                "nl": "Vlaams-Brabant",
+                "fr": "Brabant flamand",
+                "en": "Flemish Brabant",
+                "de": "Flämisch-Brabant"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-11T22:00:00+00:00",
+                "toTimestamp": "2026-08-12T22:00:00+00:00"
+              },
+              {
+                "level": "2",
+                "fromTimestamp": "2026-08-12T22:00:00+00:00",
+                "toTimestamp": "2026-08-13T22:00:00+00:00"
+              },
+              {
+                "level": "2",
+                "fromTimestamp": "2026-08-13T22:00:00+00:00",
+                "toTimestamp": "2026-08-14T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-14T22:00:00+00:00",
+                "toTimestamp": "2026-08-15T22:00:00+00:00"
+              },
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-15T22:00:00+00:00",
+                "toTimestamp": "2026-08-16T22:00:00+00:00"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "icon_country": "NL",
+    "warningType": {
+      "id": "16",
+      "name": {
+        "nl": "Hitte",
+        "fr": "Vague de chaleur",
+        "en": "Heatwave",
+        "de": "Hitte"
+      }
+    },
+    "text": {
+      "fr": "Zeer warm\n\nDe komende dagen is het zeer warm. Vandaag is hiervoor het Nationaal Hitteplan (code geel) al actief in het zuidoosten, morgen en vrijdag is het Nationaal Hitteplan in het gehele land actief.\nOuderen en mensen met een kwetsbare gezondheid kunnen gezondheidsklachten krijgen door een langere periode van hitte.\n\nVanaf zaterdag volgt enige afkoeling.\n\n \n\n Details \nVandaag is het in het zuidoosten al 30-32°C (hittekracht 5-6). Morgen ligt de maximumtemperatuur in het hele land boven de 30°C, in het zuidoosten 35-36°C (hittekracht 7, plaatselijk 8). Vrijdag loopt de maximumtemperatuur uiteen van 33°C (hittekracht 7) in het noorden tot 37°C in het zuidoosten (hittekracht 8-9). Zaterdag volgt enige afkoeling en wordt het alleen in het zuidoosten mogelijk nog tropisch warm met ca. 32°C (hittekracht 6-7). \nVooral de nachten naar vrijdag en zaterdag verlopen warm met minima rond 20°C, zeker in stedelijk gebied.\nUitgifte: 12/08/2026 15:45 uur LT",
+      "nl": "Zeer warm\n\nDe komende dagen is het zeer warm. Vandaag is hiervoor het Nationaal Hitteplan (code geel) al actief in het zuidoosten, morgen en vrijdag is het Nationaal Hitteplan in het gehele land actief.\nOuderen en mensen met een kwetsbare gezondheid kunnen gezondheidsklachten krijgen door een langere periode van hitte.\n\nVanaf zaterdag volgt enige afkoeling.\n\n \n\n Details \nVandaag is het in het zuidoosten al 30-32°C (hittekracht 5-6). Morgen ligt de maximumtemperatuur in het hele land boven de 30°C, in het zuidoosten 35-36°C (hittekracht 7, plaatselijk 8). Vrijdag loopt de maximumtemperatuur uiteen van 33°C (hittekracht 7) in het noorden tot 37°C in het zuidoosten (hittekracht 8-9). Zaterdag volgt enige afkoeling en wordt het alleen in het zuidoosten mogelijk nog tropisch warm met ca. 32°C (hittekracht 6-7). \nVooral de nachten naar vrijdag en zaterdag verlopen warm met minima rond 20°C, zeker in stedelijk gebied.\nUitgifte: 12/08/2026 15:45 uur LT"
+    },
+    "legendUri": {
+      "nl": "https://www.knmi.nl/nederland-nu/weer/waarschuwingen",
+      "fr": "https://www.knmi.nl/nederland-nu/weer/waarschuwingen",
+      "de": "https://www.knmi.nl/nederland-nu/weer/waarschuwingen",
+      "en": "https://www.knmi.nl/nederland-nu/weer/waarschuwingen"
+    },
+    "region": [
+      {
+        "name": {
+          "nl": "Nederland",
+          "fr": "Pays-Bas",
+          "en": "Netherlands",
+          "de": "Niederlande"
+        },
+        "district": [
+          {
+            "region": {
+              "code": "200009",
+              "name": {
+                "nl": "Drenthe",
+                "fr": "Drenthe",
+                "en": "Drenthe",
+                "de": "Drenthe"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T07:00:00+00:00",
+                "toTimestamp": "2026-08-14T13:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": "200001",
+              "name": {
+                "nl": "Flevoland",
+                "fr": "Flevoland",
+                "en": "Flevoland",
+                "de": "Flevoland"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T07:00:00+00:00",
+                "toTimestamp": "2026-08-14T13:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": "200011",
+              "name": {
+                "nl": "Friesland",
+                "fr": "Friesland",
+                "en": "Friesland",
+                "de": "Friesland"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T07:00:00+00:00",
+                "toTimestamp": "2026-08-14T13:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": "200005",
+              "name": {
+                "nl": "Gelderland",
+                "fr": "Gelderland",
+                "en": "Gelderland",
+                "de": "Gelderland"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-12T13:00:00+00:00",
+                "toTimestamp": "2026-08-14T13:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": "200010",
+              "name": {
+                "nl": "Groningen",
+                "fr": "Groningen",
+                "en": "Groningen",
+                "de": "Groningen"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T07:00:00+00:00",
+                "toTimestamp": "2026-08-14T13:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": 200014,
+              "name": {
+                "nl": "IJsselmeergebied",
+                "fr": "IJsselmeergebied",
+                "en": "IJsselmeergebied",
+                "de": "IJsselmeergebied"
+              }
+            },
+            "intervals": [
+              {
+                "level": 0,
+                "fromTimestamp": "2026-08-02T00:00:00+02:00",
+                "toTimestamp": "2026-08-05T00:00:00+02:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": "200007",
+              "name": {
+                "nl": "Limburg",
+                "fr": "Limburg",
+                "en": "Limburg",
+                "de": "Limburg"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-12T13:00:00+00:00",
+                "toTimestamp": "2026-08-14T13:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": "200004",
+              "name": {
+                "nl": "Noord-Brabant",
+                "fr": "Noord-Brabant",
+                "en": "Noord-Brabant",
+                "de": "Noord-Brabant"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-12T13:00:00+00:00",
+                "toTimestamp": "2026-08-14T13:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": "200000",
+              "name": {
+                "nl": "Noord-Holland",
+                "fr": "Noord-Holland",
+                "en": "Noord-Holland",
+                "de": "Noord-Holland"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T07:00:00+00:00",
+                "toTimestamp": "2026-08-14T13:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": "200008",
+              "name": {
+                "nl": "Overijssel",
+                "fr": "Overijssel",
+                "en": "Overijssel",
+                "de": "Overijssel"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-12T13:00:00+00:00",
+                "toTimestamp": "2026-08-14T13:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": "200002",
+              "name": {
+                "nl": "Utrecht",
+                "fr": "Utrecht",
+                "en": "Utrecht",
+                "de": "Utrecht"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T07:00:00+00:00",
+                "toTimestamp": "2026-08-14T13:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": "200012",
+              "name": {
+                "nl": "Waddeneilanden",
+                "fr": "Waddeneilanden",
+                "en": "Waddeneilanden",
+                "de": "Waddeneilanden"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T07:00:00+00:00",
+                "toTimestamp": "2026-08-14T13:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": 200013,
+              "name": {
+                "nl": "Waddenzee",
+                "fr": "Waddenzee",
+                "en": "Waddenzee",
+                "de": "Waddenzee"
+              }
+            },
+            "intervals": [
+              {
+                "level": 0,
+                "fromTimestamp": "2026-08-02T00:00:00+02:00",
+                "toTimestamp": "2026-08-05T00:00:00+02:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": "200006",
+              "name": {
+                "nl": "Zeeland",
+                "fr": "Zeeland",
+                "en": "Zeeland",
+                "de": "Zeeland"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T07:00:00+00:00",
+                "toTimestamp": "2026-08-14T13:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": "200003",
+              "name": {
+                "nl": "Zuid-Holland",
+                "fr": "Zuid-Holland",
+                "en": "Zuid-Holland",
+                "de": "Zuid-Holland"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T07:00:00+00:00",
+                "toTimestamp": "2026-08-14T13:00:00+00:00"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "icon_country": "LU",
+    "warningType": {
+      "id": "10",
+      "name": {
+        "nl": "Hitte",
+        "fr": "Chaleur",
+        "en": "Heat",
+        "de": "Hitze"
+      }
+    },
+    "text": {
+      "fr": "mercredi 12:00 à jeudi 06:59, pour le sud du pays: Un stress thermique modéré est attendu. La fatigue et l’épuisement dus à la chaleur sont possibles en cas d’exposition prolongée ou d’activité physique. jeudi 07:00 à vendredi 06:59, pour le sud du pays: Un stress thermique élevé est attendu, avec une température ressentie élevée persistant pendant au moins deux jours consécutifs. L’épuisement dû à la chaleur est probable, et un coup de chaleur est possible en cas d’exposition prolongée ou d’activité physique. jeudi 07:00 à vendredi 06:59, pour le nord du pays: Un stress thermique modéré est attendu. La fatigue et l’épuisement dus à la chaleur sont possibles en cas d’exposition prolongée ou d’activité physique. (MeteoLux - www.meteolux.lu)",
+      "nl": "",
+      "de": "Mittwoch 12:00 bis Freitag 06:59, für den Süden des Landes: Ein moderater thermischer Stress wird erwartet. Ermüdung und Erschöpfung durch Hitze sind bei längerem Aufenthalt im Freien oder körperlicher Betätigung möglich Donnerstag 07:00 bis Freitag 06:59, für den Norden des Landes: Ein moderater thermischer Stress wird erwartet. Ermüdung und Erschöpfung durch Hitze sind bei längerem Aufenthalt im Freien oder körperlicher Betätigung möglich (MeteoLux - www.meteolux.lu)"
+    },
+    "legendUri": {
+      "nl": "https://app.meteo.be/services/appv4/?s=getWarningLegend&k=126b46df6cea20b8641320c6355858ab&wa=10&l=nl",
+      "fr": "https://app.meteo.be/services/appv4/?s=getWarningLegend&k=126b46df6cea20b8641320c6355858ab&wa=10&l=fr",
+      "de": "https://app.meteo.be/services/appv4/?s=getWarningLegend&k=126b46df6cea20b8641320c6355858ab&wa=10&l=de",
+      "en": "https://app.meteo.be/services/appv4/?s=getWarningLegend&k=126b46df6cea20b8641320c6355858ab&wa=10&l=en"
+    },
+    "region": [
+      {
+        "name": {
+          "nl": "Groothertogdom Luxemburg",
+          "fr": "Grand-Duché de Luxembourg",
+          "en": "Grand Duchy of Luxembourg",
+          "de": "Großherzogtum Luxemburg"
+        },
+        "district": [
+          {
+            "region": {
+              "code": "6590",
+              "name": {
+                "nl": "Luxemburg Zuid",
+                "fr": "Luxembourg Sud",
+                "en": "Luxembourg South",
+                "de": "Luxemburg Süd"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-12T10:00:00+00:00",
+                "toTimestamp": "2026-08-13T05:00:00+00:00"
+              },
+              {
+                "level": "2",
+                "fromTimestamp": "2026-08-13T05:00:00+00:00",
+                "toTimestamp": "2026-08-14T05:00:00+00:00"
+              }
+            ]
+          },
+          {
+            "region": {
+              "code": "6585",
+              "name": {
+                "nl": "Luxemburg Noord",
+                "fr": "Luxembourg Nord",
+                "en": "Luxembourg North",
+                "de": "Luxemburg Nord"
+              }
+            },
+            "intervals": [
+              {
+                "level": "1",
+                "fromTimestamp": "2026-08-13T05:00:00+00:00",
+                "toTimestamp": "2026-08-14T05:00:00+00:00"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

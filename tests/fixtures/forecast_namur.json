@@ -1,0 +1,1647 @@
+{
+  "cityName": "Namur",
+  "country": "BE",
+  "obs": {
+    "temp": 32,
+    "timestamp": "2026-08-12T18:30:00+02:00",
+    "ww": 0,
+    "dayNight": "d"
+  },
+  "for": {
+    "daily": [
+      {
+        "dayName": {
+          "fr": "Cette nuit",
+          "nl": "Vannacht",
+          "en": "Tonight",
+          "de": "heute abend"
+        },
+        "period": "2",
+        "day_night": "0",
+        "dayNight": "n",
+        "text": {
+          "nl": "Vanavond en vannacht blijft het helder. De minima liggen tussen 11 graden in sommige Ardense valleien en 19 of 20 graden in de grote steden. De wind is zwak tot matig uit oost tot noordoost en ruimt naar oost tot zuidoost.",
+          "fr": "Ce soir et cette nuit, le ciel sera serein ou peu nuageux. Les minima seront compris entre 11 degrés dans certaines vallées ardennaises et 19 ou 20 degrés dans les grandes villes. Le vent sera faible à modéré de nord-est à est, virant au secteur est à sud-est."
+        },
+        "dawnRiseSeconds": "23100",
+        "dawnSetSeconds": "76140",
+        "tempMin": 20,
+        "tempMax": null,
+        "ww1": 0,
+        "ww2": null,
+        "wwevol": null,
+        "ff1": 3,
+        "ff2": 2,
+        "ffevol": 0,
+        "dd": 315,
+        "ddText": {
+          "fr": "SE",
+          "nl": "ZO",
+          "en": "SE",
+          "de": "SO"
+        },
+        "wind": {
+          "speed": 6,
+          "peakSpeed": null,
+          "dir": 315,
+          "dirText": {
+            "fr": "SE",
+            "nl": "ZO",
+            "en": "SE",
+            "de": "SO"
+          }
+        },
+        "precipChance": 0,
+        "precipQuantity": "0"
+      },
+      {
+        "dayName": {
+          "fr": "Jeudi",
+          "nl": "Donderdag",
+          "en": "Thursday",
+          "de": "Donnerstag"
+        },
+        "period": "3",
+        "day_night": "1",
+        "dayNight": "d",
+        "text": {
+          "nl": "Morgen blijft het zonnig en wordt het erg warm met maxima van 30 graden in de Ardennen, 33 graden aan de kust en tot plaatselijk 35 graden in het binnenland. De wind is zwak veranderlijk of uit zuidoostelijke richtingen. Aan zee kan in de namiddag een zeebries opsteken uit het noordoosten.\n\nDonderdagavond en -nacht is het helder of lichtbewolkt met minima tussen 12 graden in sommige Ardense valleien en 21 of 22 graden in de grote steden. De wind blijft zwak veranderlijk.",
+          "fr": "Demain, le temps sera à nouveau ensoleillé et très chaud avec des maxima de l'ordre de 30 degrés en Ardenne, 33 degrés à la côte et localement 35 degrés dans l'intérieur. Le vent sera faible et variable ou de secteur sud. Le long du littoral, une brise de nord-est se mettra en place dans le courant de l'après-midi.\n\nJeudi soir et la nuit suivante, le ciel sera serein ou peu nuageux. Les minima seront compris entre 12 degrés dans certaines vallées ardennaises et 21 ou 22 degrés dans les grandes villes. Le vent sera faible et variable."
+        },
+        "dawnRiseSeconds": "23220",
+        "dawnSetSeconds": "76020",
+        "tempMin": 20,
+        "tempMax": 34,
+        "ww1": 0,
+        "ww2": null,
+        "wwevol": null,
+        "ff1": 2,
+        "ff2": 1,
+        "ffevol": 0,
+        "dd": 0,
+        "ddText": {
+          "fr": "VAR",
+          "nl": "VER",
+          "en": "VAR",
+          "de": "VAR"
+        },
+        "wind": {
+          "speed": 1,
+          "peakSpeed": null,
+          "dir": 0,
+          "dirText": {
+            "fr": "VAR",
+            "nl": "VER",
+            "en": "VAR",
+            "de": "VAR"
+          }
+        },
+        "precipChance": 0,
+        "precipQuantity": "0"
+      },
+      {
+        "dayName": {
+          "fr": "Vendredi",
+          "nl": "Vrijdag",
+          "en": "Friday",
+          "de": "Freitag"
+        },
+        "period": "5",
+        "day_night": "1",
+        "dayNight": "d",
+        "text": {
+          "nl": "Ook vrijdag is er veel zon en schommelen de maxima tussen 30 graden aan zee en 35 graden in het centrum en Belgisch Lotharingen. De wind is zwak en aanvankelijk veranderlijk maar wordt geleidelijk noordwestelijk in de loop van de namiddag en avond.",
+          "fr": "Vendredi également, le soleil sera largement présent, avec des maxima entre 30 degrés à la côte et 35 degrés dans le centre ainsi qu'en Lorraine Belge.\nLe vent sera faible et variable en premier lieu, mais s'orientera progressivement au nord-ouest dans l'après-midi et en soirée."
+        },
+        "dawnRiseSeconds": "23280",
+        "dawnSetSeconds": "75900",
+        "tempMin": 22,
+        "tempMax": 35,
+        "ww1": 0,
+        "ww2": null,
+        "wwevol": null,
+        "ff1": 2,
+        "ff2": null,
+        "ffevol": null,
+        "dd": 135,
+        "ddText": {
+          "fr": "NO",
+          "nl": "NW",
+          "en": "NW",
+          "de": "NW"
+        },
+        "wind": {
+          "speed": 6,
+          "peakSpeed": null,
+          "dir": 135,
+          "dirText": {
+            "fr": "NO",
+            "nl": "NW",
+            "en": "NW",
+            "de": "NW"
+          }
+        },
+        "precipChance": 0,
+        "precipQuantity": "0"
+      },
+      {
+        "dayName": {
+          "fr": "Samedi",
+          "nl": "Zaterdag",
+          "en": "Saturday",
+          "de": "Samstag"
+        },
+        "period": "7",
+        "day_night": "1",
+        "dayNight": "d",
+        "text": {
+          "nl": "Zaterdag wordt het ,aan de voorzijde van een naderende storing, onstabiel en onweerachtig. Het is dan wisselend bewolkt met lokale regen- of onweersbuien doorheen de dag. Zaterdagnacht zou de storing plaatselijk voor behoorlijk wat regen kunnen zorgen en dat lijkt nu voor het zuidoosten en oosten van het land bestemd. Het wordt minder warm met maxima rond 24 graden aan zee, tussen 26 en 30 graden in het centrum en mogelijk nog tot 33 à 34 graden in Belgisch Lotharingen. De wind wordt zwak tot matig uit veranderlijke richtingen of uit west tot noordwest. Aan zee komt het al snel tot een matige noordelijke wind.",
+          "fr": "Samedi, l'atmosphère deviendra instable à l'avant d'une perturbation proche de nos régions. Le ciel sera variable avec des averses ou des averses orageuses par endroits tout au long de la journée. Dans la nuit de samedi à dimanche, la perturbation pourrait être à l'origine de précipitations importantes sur certaines régions, principalement le sud-est et l'est du pays. Il fera moins chaud : les maxima avoisineront les 24 degrés au littoral, se situeront entre 26 et 30 degrés dans le centre et pourront atteindre 33 à 34 degrés en Lorraine belge. Le vent sera faible à modéré, de direction variable ou d'ouest à nord-ouest mais un vent modéré de secteur nord se lèvera rapidement à la côte."
+        },
+        "dawnRiseSeconds": "23400",
+        "dawnSetSeconds": "75780",
+        "tempMin": 19,
+        "tempMax": 29,
+        "ww1": 3,
+        "ww2": null,
+        "wwevol": null,
+        "ff1": 2,
+        "ff2": null,
+        "ffevol": null,
+        "dd": 90,
+        "ddText": {
+          "fr": "O",
+          "nl": "W",
+          "en": "W",
+          "de": "W"
+        },
+        "wind": {
+          "speed": 6,
+          "peakSpeed": null,
+          "dir": 90,
+          "dirText": {
+            "fr": "O",
+            "nl": "W",
+            "en": "W",
+            "de": "W"
+          }
+        },
+        "precipChance": 50,
+        "precipQuantity": "0"
+      },
+      {
+        "dayName": {
+          "fr": "Dimanche",
+          "nl": "Zondag",
+          "en": "Sunday",
+          "de": "Sonntag"
+        },
+        "period": "9",
+        "day_night": "1",
+        "dayNight": "d",
+        "text": {
+          "nl": "Zondag regent het mogelijk nog in het oosten maar later op de dag wordt het wisselend bewolkt met lokale buien. Daarbij is in het binnenland een donderslag mogelijk. Het wordt frisser met maxima van 18 tot 25 graden, afhankelijk van de regen in de loop van de dag. Er waait een zwakke tot matige noordelijke wind.",
+          "fr": "Dimanche, il pourra encore pleuvoir dans l'est mais plus tard en journée, la nébulosité deviendra variable avec des averses locales. Et dans l'intérieur, un coup de tonnerre sera possible. Il fera plus frais avec des maxima oscillant entre 18 et 25 degrés en fonction de la pluie qui pourra se produire en cours de journée. Le vent sera faible à modéré de nord."
+        },
+        "dawnRiseSeconds": "23460",
+        "dawnSetSeconds": "75660",
+        "tempMin": 17,
+        "tempMax": 23,
+        "ww1": 15,
+        "ww2": 18,
+        "wwevol": 0,
+        "ff1": 2,
+        "ff2": 3,
+        "ffevol": 0,
+        "dd": 180,
+        "ddText": {
+          "fr": "N",
+          "nl": "N",
+          "en": "N",
+          "de": "N"
+        },
+        "wind": {
+          "speed": 6,
+          "peakSpeed": null,
+          "dir": 180,
+          "dirText": {
+            "fr": "N",
+            "nl": "N",
+            "en": "N",
+            "de": "N"
+          }
+        },
+        "precipChance": 85,
+        "precipQuantity": "1"
+      },
+      {
+        "dayName": {
+          "fr": "Lundi",
+          "nl": "Maandag",
+          "en": "Monday",
+          "de": "Montag"
+        },
+        "period": "11",
+        "day_night": "1",
+        "dayNight": "d",
+        "text": {
+          "nl": "Maandag is het wisselend bewolkt met nog kans op een bui. Later op de dag zou het droog gaan worden met meer opklaringen vanaf het westen. De maxima liggen tussen zo'n 19 graden in Hoge Venen en 23 à 24 graden in het centrum. De wind is zwak tot matig uit veranderlijke of noordelijke richtingen.",
+          "fr": "Lundi, la nébulosité restera variable avec le risque d'une averse. Plus tard, le temps pourrait devenir sec avec davantage d’éclaircies à partir de l'ouest. Les maxima oscilleront entre 19 degrés en Hautes Fagnes et 23 ou 24 degrés dans le centre. le vent sera faible à modéré de direction variable ou de secteur nord."
+        },
+        "dawnRiseSeconds": "23580",
+        "dawnSetSeconds": "75540",
+        "tempMin": 12,
+        "tempMax": 22,
+        "ww1": 3,
+        "ww2": null,
+        "wwevol": null,
+        "ff1": 1,
+        "ff2": 2,
+        "ffevol": 0,
+        "dd": 135,
+        "ddText": {
+          "fr": "NO",
+          "nl": "NW",
+          "en": "NW",
+          "de": "NW"
+        },
+        "wind": {
+          "speed": 6,
+          "peakSpeed": null,
+          "dir": 135,
+          "dirText": {
+            "fr": "NO",
+            "nl": "NW",
+            "en": "NW",
+            "de": "NW"
+          }
+        },
+        "precipChance": 0,
+        "precipQuantity": "0"
+      },
+      {
+        "dayName": {
+          "fr": "Mardi",
+          "nl": "Dinsdag",
+          "en": "Tuesday",
+          "de": "Dienstag"
+        },
+        "period": "13",
+        "day_night": "1",
+        "dayNight": "d",
+        "text": {
+          "nl": "Dinsdag en woensdag lijken wisselvallige dagen te gaan worden met perioden van regen of buien en mogelijk regen van betekenis. De maxima liggen tussen 19 en 23 graden bij een soms strakke wind.",
+          "fr": "Mardi et mercredi, le temps sera variable avec des périodes de pluie ou d'averses et ces précipitations pourraient être importantes. Les maxima seront compris entre 19 et 23 degrés sous un vent soutenu."
+        },
+        "dawnRiseSeconds": "23700",
+        "dawnSetSeconds": "75420",
+        "tempMin": 15,
+        "tempMax": 22,
+        "ww1": 3,
+        "ww2": 18,
+        "wwevol": 0,
+        "ff1": 3,
+        "ff2": null,
+        "ffevol": null,
+        "dd": 45,
+        "ddText": {
+          "fr": "SO",
+          "nl": "ZW",
+          "en": "SW",
+          "de": "SW"
+        },
+        "wind": {
+          "speed": 12,
+          "peakSpeed": null,
+          "dir": 45,
+          "dirText": {
+            "fr": "SO",
+            "nl": "ZW",
+            "en": "SW",
+            "de": "SW"
+          }
+        },
+        "precipChance": 100,
+        "precipQuantity": "1"
+      },
+      {
+        "dayName": {
+          "fr": "Mercredi",
+          "nl": "Woensdag",
+          "en": "Wednesday",
+          "de": "Mittwoch"
+        },
+        "period": "15",
+        "day_night": "1",
+        "dayNight": "d",
+        "text": {
+          "nl": "Dinsdag en woensdag lijken wisselvallige dagen te gaan worden met perioden van regen of buien en mogelijk regen van betekenis. De maxima liggen tussen 19 en 23 graden bij een soms strakke wind.",
+          "fr": "Mardi et mercredi, le temps sera variable avec des périodes de pluie ou d'averses et ces précipitations pourraient être importantes. Les maxima seront compris entre 19 et 23 degrés sous un vent soutenu."
+        },
+        "dawnRiseSeconds": "23760",
+        "dawnSetSeconds": "75300",
+        "tempMin": 15,
+        "tempMax": 22,
+        "ww1": 3,
+        "ww2": 18,
+        "wwevol": 0,
+        "ff1": 2,
+        "ff2": 3,
+        "ffevol": 0,
+        "dd": 90,
+        "ddText": {
+          "fr": "O",
+          "nl": "W",
+          "en": "W",
+          "de": "W"
+        },
+        "wind": {
+          "speed": 12,
+          "peakSpeed": null,
+          "dir": 90,
+          "dirText": {
+            "fr": "O",
+            "nl": "W",
+            "en": "W",
+            "de": "W"
+          }
+        },
+        "precipChance": 100,
+        "precipQuantity": "1"
+      }
+    ],
+    "showWarningTab": true,
+    "graph": {
+      "svg": [
+        {
+          "url": {
+            "nl": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=tx&l=nl&k=3d49269ea4342493b101522d1f1b04da",
+            "fr": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=tx&l=fr&k=3d49269ea4342493b101522d1f1b04da",
+            "en": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=tx&l=en&k=3d49269ea4342493b101522d1f1b04da",
+            "de": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=tx&l=de&k=3d49269ea4342493b101522d1f1b04da"
+          },
+          "ratio": 1.3638709677419354
+        },
+        {
+          "url": {
+            "nl": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=tn&l=nl&k=3d49269ea4342493b101522d1f1b04da",
+            "fr": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=tn&l=fr&k=3d49269ea4342493b101522d1f1b04da",
+            "en": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=tn&l=en&k=3d49269ea4342493b101522d1f1b04da",
+            "de": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=tn&l=de&k=3d49269ea4342493b101522d1f1b04da"
+          },
+          "ratio": 1.3638709677419354
+        },
+        {
+          "url": {
+            "nl": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=rr&l=nl&k=3d49269ea4342493b101522d1f1b04da",
+            "fr": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=rr&l=fr&k=3d49269ea4342493b101522d1f1b04da",
+            "en": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=rr&l=en&k=3d49269ea4342493b101522d1f1b04da",
+            "de": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=rr&l=de&k=3d49269ea4342493b101522d1f1b04da"
+          },
+          "ratio": 1.3638709677419354
+        }
+      ]
+    },
+    "hourly": [
+      {
+        "hour": "18",
+        "temp": 32,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1022,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 225,
+        "windDirectionText": {
+          "nl": "NO",
+          "fr": "NE",
+          "en": "NE",
+          "de": "NO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "19",
+        "temp": 31,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1022,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 225,
+        "windDirectionText": {
+          "nl": "NO",
+          "fr": "NE",
+          "en": "NE",
+          "de": "NO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "20",
+        "temp": 29,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1022,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 225,
+        "windDirectionText": {
+          "nl": "NO",
+          "fr": "NE",
+          "en": "NE",
+          "de": "NO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "21",
+        "temp": 26,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1022,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 248,
+        "windDirectionText": {
+          "nl": "ONO",
+          "fr": "ENE",
+          "en": "ENE",
+          "de": "ONO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "22",
+        "temp": 24,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1023,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 248,
+        "windDirectionText": {
+          "nl": "ONO",
+          "fr": "ENE",
+          "en": "ENE",
+          "de": "ONO"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "23",
+        "temp": 23,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1023,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 270,
+        "windDirectionText": {
+          "nl": "O",
+          "fr": "E",
+          "en": "E",
+          "de": "O"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "00",
+        "temp": 22,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1023,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 293,
+        "windDirectionText": {
+          "nl": "OZO",
+          "fr": "ESE",
+          "en": "ESE",
+          "de": "OSO"
+        },
+        "dayNight": "n",
+        "dateShow": "13/08",
+        "dateShowLocalized": {
+          "nl": "Don.",
+          "fr": "Jeu.",
+          "en": "Thu.",
+          "de": "Don."
+        }
+      },
+      {
+        "hour": "01",
+        "temp": 21,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1023,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 293,
+        "windDirectionText": {
+          "nl": "OZO",
+          "fr": "ESE",
+          "en": "ESE",
+          "de": "OSO"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "02",
+        "temp": 21,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1023,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 315,
+        "windDirectionText": {
+          "nl": "ZO",
+          "fr": "SE",
+          "en": "SE",
+          "de": "SO"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "03",
+        "temp": 20,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1023,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 315,
+        "windDirectionText": {
+          "nl": "ZO",
+          "fr": "SE",
+          "en": "SE",
+          "de": "SO"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "04",
+        "temp": 20,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1023,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 315,
+        "windDirectionText": {
+          "nl": "ZO",
+          "fr": "SE",
+          "en": "SE",
+          "de": "SO"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "05",
+        "temp": 20,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1022,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 315,
+        "windDirectionText": {
+          "nl": "ZO",
+          "fr": "SE",
+          "en": "SE",
+          "de": "SO"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "06",
+        "temp": 19,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1022,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 315,
+        "windDirectionText": {
+          "nl": "ZO",
+          "fr": "SE",
+          "en": "SE",
+          "de": "SO"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "07",
+        "temp": 19,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1022,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 315,
+        "windDirectionText": {
+          "nl": "ZO",
+          "fr": "SE",
+          "en": "SE",
+          "de": "SO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "08",
+        "temp": 20,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1022,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 315,
+        "windDirectionText": {
+          "nl": "ZO",
+          "fr": "SE",
+          "en": "SE",
+          "de": "SO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "09",
+        "temp": 23,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1023,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 315,
+        "windDirectionText": {
+          "nl": "ZO",
+          "fr": "SE",
+          "en": "SE",
+          "de": "SO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "10",
+        "temp": 26,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1023,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 315,
+        "windDirectionText": {
+          "nl": "ZO",
+          "fr": "SE",
+          "en": "SE",
+          "de": "SO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "11",
+        "temp": 28,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1022,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 315,
+        "windDirectionText": {
+          "nl": "ZO",
+          "fr": "SE",
+          "en": "SE",
+          "de": "SO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "12",
+        "temp": 30,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1022,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 315,
+        "windDirectionText": {
+          "nl": "ZO",
+          "fr": "SE",
+          "en": "SE",
+          "de": "SO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "13",
+        "temp": 32,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1022,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 315,
+        "windDirectionText": {
+          "nl": "ZO",
+          "fr": "SE",
+          "en": "SE",
+          "de": "SO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "14",
+        "temp": 33,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1022,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 293,
+        "windDirectionText": {
+          "nl": "OZO",
+          "fr": "ESE",
+          "en": "ESE",
+          "de": "OSO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "15",
+        "temp": 33,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1021,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 293,
+        "windDirectionText": {
+          "nl": "OZO",
+          "fr": "ESE",
+          "en": "ESE",
+          "de": "OSO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "16",
+        "temp": 34,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1021,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 270,
+        "windDirectionText": {
+          "nl": "O",
+          "fr": "E",
+          "en": "E",
+          "de": "O"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "17",
+        "temp": 34,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1020,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 270,
+        "windDirectionText": {
+          "nl": "O",
+          "fr": "E",
+          "en": "E",
+          "de": "O"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "18",
+        "temp": 34,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1020,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 248,
+        "windDirectionText": {
+          "nl": "ONO",
+          "fr": "ENE",
+          "en": "ENE",
+          "de": "ONO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "19",
+        "temp": 33,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1019,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 248,
+        "windDirectionText": {
+          "nl": "ONO",
+          "fr": "ENE",
+          "en": "ENE",
+          "de": "ONO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "20",
+        "temp": 31,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1019,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 248,
+        "windDirectionText": {
+          "nl": "ONO",
+          "fr": "ENE",
+          "en": "ENE",
+          "de": "ONO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "21",
+        "temp": 29,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1019,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 248,
+        "windDirectionText": {
+          "nl": "ONO",
+          "fr": "ENE",
+          "en": "ENE",
+          "de": "ONO"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "22",
+        "temp": 27,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1019,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 248,
+        "windDirectionText": {
+          "nl": "ONO",
+          "fr": "ENE",
+          "en": "ENE",
+          "de": "ONO"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "23",
+        "temp": 26,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1019,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 248,
+        "windDirectionText": {
+          "nl": "ONO",
+          "fr": "ENE",
+          "en": "ENE",
+          "de": "ONO"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "00",
+        "temp": 24,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1019,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 315,
+        "windDirectionText": {
+          "nl": "ZO",
+          "fr": "SE",
+          "en": "SE",
+          "de": "SO"
+        },
+        "dayNight": "n",
+        "dateShow": "14/08",
+        "dateShowLocalized": {
+          "nl": "Vri.",
+          "fr": "Ven.",
+          "en": "Fri.",
+          "de": "Fre."
+        }
+      },
+      {
+        "hour": "01",
+        "temp": 23,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1019,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 0,
+        "windDirectionText": {
+          "nl": "Z",
+          "fr": "S",
+          "en": "S",
+          "de": "S"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "02",
+        "temp": 22,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1019,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 338,
+        "windDirectionText": {
+          "nl": "ZZO",
+          "fr": "SSE",
+          "en": "SSE",
+          "de": "SSO"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "03",
+        "temp": 22,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1018,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 338,
+        "windDirectionText": {
+          "nl": "ZZO",
+          "fr": "SSE",
+          "en": "SSE",
+          "de": "SSO"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "04",
+        "temp": 22,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1018,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 0,
+        "windDirectionText": {
+          "nl": "Z",
+          "fr": "S",
+          "en": "S",
+          "de": "S"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "05",
+        "temp": 22,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1018,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 0,
+        "windDirectionText": {
+          "nl": "Z",
+          "fr": "S",
+          "en": "S",
+          "de": "S"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "06",
+        "temp": 21,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1018,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 0,
+        "windDirectionText": {
+          "nl": "Z",
+          "fr": "S",
+          "en": "S",
+          "de": "S"
+        },
+        "dayNight": "n"
+      },
+      {
+        "hour": "07",
+        "temp": 21,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1018,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 0,
+        "windDirectionText": {
+          "nl": "Z",
+          "fr": "S",
+          "en": "S",
+          "de": "S"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "08",
+        "temp": 23,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1018,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 0,
+        "windDirectionText": {
+          "nl": "Z",
+          "fr": "S",
+          "en": "S",
+          "de": "S"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "09",
+        "temp": 25,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1018,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 0,
+        "windDirectionText": {
+          "nl": "Z",
+          "fr": "S",
+          "en": "S",
+          "de": "S"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "10",
+        "temp": 28,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1018,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 23,
+        "windDirectionText": {
+          "nl": "ZZW",
+          "fr": "SSO",
+          "en": "SSW",
+          "de": "SSW"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "11",
+        "temp": 30,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1017,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 45,
+        "windDirectionText": {
+          "nl": "ZW",
+          "fr": "SO",
+          "en": "SW",
+          "de": "SW"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "12",
+        "temp": 32,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1017,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 90,
+        "windDirectionText": {
+          "nl": "W",
+          "fr": "O",
+          "en": "W",
+          "de": "W"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "13",
+        "temp": 33,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1017,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 113,
+        "windDirectionText": {
+          "nl": "WNW",
+          "fr": "ONO",
+          "en": "WNW",
+          "de": "WNW"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "14",
+        "temp": 34,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1016,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 113,
+        "windDirectionText": {
+          "nl": "WNW",
+          "fr": "ONO",
+          "en": "WNW",
+          "de": "WNW"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "15",
+        "temp": 34,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1016,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 113,
+        "windDirectionText": {
+          "nl": "WNW",
+          "fr": "ONO",
+          "en": "WNW",
+          "de": "WNW"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "16",
+        "temp": 35,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1015,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 135,
+        "windDirectionText": {
+          "nl": "NW",
+          "fr": "NO",
+          "en": "NW",
+          "de": "NW"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "17",
+        "temp": 34,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1015,
+        "windSpeedKm": 5,
+        "windPeakSpeedKm": null,
+        "windDirection": 158,
+        "windDirectionText": {
+          "nl": "NNW",
+          "fr": "NNO",
+          "en": "NNW",
+          "de": "NNW"
+        },
+        "dayNight": "d"
+      },
+      {
+        "hour": "18",
+        "temp": 34,
+        "ww": "0",
+        "precipChance": "0",
+        "precipQuantity": 0,
+        "pressure": 1014,
+        "windSpeedKm": 10,
+        "windPeakSpeedKm": null,
+        "windDirection": 158,
+        "windDirectionText": {
+          "nl": "NNW",
+          "fr": "NNO",
+          "en": "NNW",
+          "de": "NNW"
+        },
+        "dayNight": "d"
+      }
+    ],
+    "warning": [
+      {
+        "icon_country": "BE",
+        "warningType": {
+          "id": "10",
+          "name": {
+            "fr": "Chaleur",
+            "nl": "Hitte",
+            "en": "Heat",
+            "de": "Hitze"
+          }
+        },
+        "warningLevel": "1",
+        "text": {
+          "fr": "Aujourd'hui, les maxima seront supérieurs à 30 degrés dans la plupart des régions. Jeudi et vendredi, il fera encore plus chaud. Dans certaines régions, les maxima seront proches de 35 degrés, ce qui nous amène à émettre une alerte orange dans ces régions. \r\nLa phase d'avertissement du SPF Santé publique est maintenue durant toute cette période. \r\nA partir du week-end, il fera moins chaud.",
+          "nl": "Vandaag wordt het op de meeste plaatsen warmer dan 30 graden. Donderdag en vrijdag wordt het nog wat warmer. In sommige streken kan het kwik tot 35 graden stijgen, waardoor we daar overgaan naar een oranje waarschuwing.\r\nDe waarschuwingsfase van het ozon- en hitteplan van de FOD Volksgezondheid blijft van kracht. \r\nVanaf het weekend wordt het minder warm.",
+          "en": "By such temperatures, measures should be taken to protect older and weaker persons by giving them more often to drink and to not let them stand or sit in direct sunlight. Be careful.",
+          "de": "Bei solchen Temperaturwerten können Maßnahmen zum Schutz älterer und schwächerer Menschen ergriffen werden durch: mehr trinken, keinem direkten Sonnenlicht aussetzen. Seien Sie vorsichtig."
+        },
+        "fromTimestamp": "2026-08-12T00:00:00+02:00",
+        "toTimestamp": "2026-08-17T00:00:00+02:00"
+      }
+    ]
+  },
+  "module": [
+    {
+      "type": "svg",
+      "data": {
+        "url": {
+          "nl": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=pollen&l=nl&k=3d49269ea4342493b101522d1f1b04da",
+          "fr": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=pollen&l=fr&k=3d49269ea4342493b101522d1f1b04da",
+          "en": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=pollen&l=en&k=3d49269ea4342493b101522d1f1b04da",
+          "de": "https://app.meteo.be/services/appv4/?s=getSvg&ins=92094&e=pollen&l=de&k=3d49269ea4342493b101522d1f1b04da"
+        },
+        "ratio": 2.193
+      }
+    },
+    {
+      "type": "uv",
+      "data": {
+        "levelValue": 6.3,
+        "level": {
+          "nl": "Hoog",
+          "fr": "Elevé",
+          "en": "High",
+          "de": "Hoch"
+        },
+        "title": {
+          "nl": "Uv-index",
+          "fr": "Indice UV",
+          "en": "UV Index",
+          "de": "UV Index"
+        }
+      }
+    },
+    {
+      "type": "observation",
+      "data": {
+        "count": 415,
+        "title": {
+          "nl": "Waarnemingen vandaag",
+          "fr": "Observations d'aujourd'hui",
+          "en": "Today's Observations",
+          "de": "Beobachtungen heute"
+        }
+      }
+    },
+    {
+      "type": "svg",
+      "data": {
+        "url": {
+          "nl": "https://app.meteo.be/services/appv4/?s=getSvg&e=efem&l=nl&k=3d49269ea4342493b101522d1f1b04da",
+          "fr": "https://app.meteo.be/services/appv4/?s=getSvg&e=efem&l=fr&k=3d49269ea4342493b101522d1f1b04da",
+          "en": "https://app.meteo.be/services/appv4/?s=getSvg&e=efem&l=en&k=3d49269ea4342493b101522d1f1b04da",
+          "de": "https://app.meteo.be/services/appv4/?s=getSvg&e=efem&l=de&k=3d49269ea4342493b101522d1f1b04da"
+        },
+        "ratio": 1.6587926509186353
+      }
+    }
+  ],
+  "animation": {
+    "localisationLayer": "https://app.meteo.be/services/appv4/?s=getLocalizationLayer&ins=92094&f=2&k=78dc20d5c67ec56f2c33d17469a15786",
+    "localisationLayerRatioX": 0.6667,
+    "localisationLayerRatioY": 0.523,
+    "speed": 0.3,
+    "type": "10min",
+    "unit": {
+      "fr": "mm/10min",
+      "nl": "mm/10min",
+      "en": "mm/10min",
+      "de": "mm/10min"
+    },
+    "country": "BE",
+    "sequence": [
+      {
+        "time": "2026-08-12T17:00:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121510&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T17:10:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121520&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T17:20:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121530&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T17:30:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121540&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T17:40:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121550&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T17:50:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121600&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T18:00:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121610&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T18:10:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121620&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T18:20:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121630&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T18:30:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121640&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T18:40:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121650&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T18:50:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121700&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T19:00:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121710&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T19:10:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121720&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T19:20:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121730&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T19:30:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121740&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T19:40:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121750&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T19:50:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121800&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T20:00:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121810&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T20:10:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121820&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T20:20:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121830&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T20:30:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121840&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T20:40:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121850&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T20:50:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121900&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T21:00:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121910&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T21:10:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121920&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T21:20:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121930&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T21:30:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121940&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T21:40:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608121950&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      },
+      {
+        "time": "2026-08-12T21:50:00+02:00",
+        "uri": "https://cdn.meteo.be/services/appv4/?s=getIncaImage&i=202608122000&f=2&k=a135e11b0d2373a2fd518cc6c4b21a3f&d=202608121620",
+        "value": 0,
+        "position": 0,
+        "positionLower": 0,
+        "positionHigher": 0
+      }
+    ],
+    "threshold": [],
+    "sequenceHint": {
+      "nl": "Geen regen voorzien op korte termijn",
+      "fr": "Pas de pluie prévue prochainement",
+      "en": "No rain forecasted shortly",
+      "de": "Kein Regen erwartet in naher Zukunft"
+    }
+  },
+  "todayObsCount": 415
+}
