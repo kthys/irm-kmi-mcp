@@ -109,9 +109,3 @@ No API keys or configuration required. The daily request key is derived automati
 
 Tests run against recorded API responses (`tests/fixtures/`) with a mocked HTTP transport,
 so no network access is required. Re-record fixtures after upstream API changes.
-
-## Roadmap
-
-- [ ] Radar-based rain nowcast (`getIncaImage` / radar animation)
-- [ ] Pollen levels (experimental, the IRM pollen SVG is volatile)
-- [ ] Per-province municipality listing
