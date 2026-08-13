@@ -51,43 +51,74 @@ This project is **not affiliated with, sponsored or endorsed by the IRM/KMI**.
 
 ## Installation
 
+From [PyPI](https://pypi.org/project/irm-kmi-mcp/):
+
 ```bash
-git clone https://github.com/kthys/irm-kmi-mcp.git
-cd irm-kmi-mcp
-python3 -m venv .venv
-.venv/bin/pip install -e .
+pip install irm-kmi-mcp
 ```
+
+…or run it zero-install on every invocation with
+[`uvx`](https://docs.astral.sh/uv/guides/tools/) (recommended for MCP clients —
+no venv to manage):
+
+```bash
+uvx irm-kmi-mcp
+```
+
+See [Development](#development) below for installing from source.
 
 ## Usage
 
 Run the server (stdio transport):
 
 ```bash
-.venv/bin/irm-kmi-mcp
+irm-kmi-mcp
 # or
-.venv/bin/python -m irm_kmi_mcp
+python -m irm_kmi_mcp
 ```
 
 ### Claude Desktop
+
+Zero-install with `uvx` (recommended):
 
 ```json
 {
   "mcpServers": {
     "irm-kmi-mcp": {
-      "command": "/absolute/path/to/irm-kmi-mcp/.venv/bin/irm-kmi-mcp"
+      "command": "uvx",
+      "args": ["irm-kmi-mcp"]
     }
   }
 }
 ```
 
+Or, after `pip install irm-kmi-mcp`:
+
+```json
+{
+  "mcpServers": {
+    "irm-kmi-mcp": {
+      "command": "irm-kmi-mcp"
+    }
+  }
+}
+```
+
+To set a default language (see [Configuration](#configuration)), add an `"env"`
+key to either form, e.g. `"env": { "IRM_LANG": "fr" }`.
+
 ### Hermes Agent
+
+After `pip install irm-kmi-mcp` (so the `irm-kmi-mcp` command is on `PATH`):
 
 ```yaml
 # config.yaml
 mcp_servers:
   irm-kmi-mcp:
-    command: "/absolute/path/to/irm-kmi-mcp/.venv/bin/irm-kmi-mcp"
+    command: "irm-kmi-mcp"
     enabled: true
+    # env:
+    #   IRM_LANG: "fr"  # optional: default language for official texts
 ```
 
 No API keys or configuration required. The daily request key is derived automatically.
@@ -101,7 +132,12 @@ No API keys or configuration required. The daily request key is derived automati
 
 ## Development
 
+Install from source in an editable dev environment:
+
 ```bash
+git clone https://github.com/kthys/irm-kmi-mcp.git
+cd irm-kmi-mcp
+python3 -m venv .venv
 .venv/bin/pip install -e ".[dev]"
 .venv/bin/pytest
 .venv/bin/ruff check .
