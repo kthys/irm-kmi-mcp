@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 # --- API ---------------------------------------------------------------------
 BASE_URL = "https://app.meteo.be/services/appv4/"
 APP_SECRET = "r9EnW374jkJ9acc"
-USER_AGENT = "irm-kmi-mcp"
+USER_AGENT = "kthys/irm-kmi-mcp"
 
 # --- Behaviour ---------------------------------------------------------------
 SUPPORTED_LANGS = ("fr", "nl", "en", "de")

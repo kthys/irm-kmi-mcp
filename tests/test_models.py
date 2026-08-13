@@ -64,6 +64,55 @@ def test_hourly_forecast_parsing() -> None:
     assert hour.wind_kmh == 10
 
 
+def test_hourly_wind_direction_normalized() -> None:
+    """IRM degrees point *toward* the wind; the model must expose the bearing."""
+    raw = load_fixture("forecast_namur.json")
+    hour = HourlyForecast.from_raw(raw["for"]["hourly"][0], "fr")
+    # Fixture: windDirection=225, windDirectionText={"fr": "NE", ...}.
+    # 225° toward NE == wind coming from 45° (NE): degrees must match the text.
+    assert hour.wind_direction == 45.0
+    assert hour.wind_direction_text == "NE"
+
+
+def test_hourly_wind_direction_variable() -> None:
+    """Variable wind (VAR/VER) yields no bearing, whatever the language."""
+    item = {
+        "hour": "12",
+        "windDirection": 0,
+        "windDirectionText": {"fr": "VAR", "nl": "VER", "en": "VAR", "de": "VAR"},
+    }
+    hour = HourlyForecast.from_raw(item, "nl")
+    assert hour.wind_direction is None
+    assert hour.wind_direction_text == "VER"
+
+
+def test_hourly_wind_direction_missing() -> None:
+    hour = HourlyForecast.from_raw({"hour": "12"}, "fr")
+    assert hour.wind_direction is None
+    assert hour.wind_direction_text is None
+
+
+def test_wind_bearing_helper() -> None:
+    from irm_kmi_mcp.models import _wind_bearing
+
+    assert _wind_bearing(None) is None
+    assert _wind_bearing("abc") is None
+    assert _wind_bearing(248) == 68.0
+    assert _wind_bearing(270) == 90.0
+    assert _wind_bearing(0) == 180.0
+    assert _wind_bearing("45") == 225.0
+
+
+def test_is_variable_wind() -> None:
+    from irm_kmi_mcp.models import _is_variable_wind
+
+    assert _is_variable_wind(None) is False
+    assert _is_variable_wind("SE") is False
+    assert _is_variable_wind({"fr": "NE"}) is False
+    assert _is_variable_wind({"fr": "VAR", "nl": "VER", "en": "VAR"}) is True
+    assert _is_variable_wind("var") is True  # case-insensitive
+
+
 def test_warning_from_forecast() -> None:
     raw = load_fixture("forecast_namur.json")
     w = WeatherWarning.from_forecast(raw["for"]["warning"][0], "fr")

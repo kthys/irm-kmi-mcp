@@ -52,6 +52,55 @@ def _lang_text(value: Any, lang: str) -> str | None:
     return next(iter(value.values()), None) if value else None
 
 
+# IRM reports variable wind as "VAR" (fr/en/de) or "VER" (nl); the degrees
+# field is then meaningless (it carries a placeholder such as 0).
+_VARIABLE_WIND_CODES = frozenset({"VAR", "VER", "VARIABLE"})
+
+
+def _is_variable_wind(value: Any) -> bool:
+    """Tell whether the raw ``windDirectionText`` reports variable wind.
+
+    The raw value is a per-language dict (``{"fr": "VAR", "nl": "VER", ...}``)
+    or a plain string; any language entry matching the variable-wind codes is
+    enough, so the check is independent of the requested language.
+
+    Args:
+        value: Raw ``windDirectionText`` from the API.
+
+    Returns:
+        ``True`` when the wind is reported as variable.
+    """
+    if isinstance(value, dict):
+        values = value.values()
+    elif value is None:
+        return False
+    else:
+        values = (value,)
+    return any(str(v).strip().upper() in _VARIABLE_WIND_CODES for v in values)
+
+
+def _wind_bearing(degrees: Any) -> float | None:
+    """Convert IRM wind degrees to the conventional bearing (direction *from*).
+
+    The undocumented IRM backend reports ``windDirection`` as the direction
+    the wind blows *toward*, while ``windDirectionText`` (and the usual
+    meteorological convention) express the direction the wind comes *from* —
+    the two fields are systematically 180° apart. Rotating by 180° aligns the
+    degrees with the text (cross-checked against independent weather sources).
+    ``None`` is passed through.
+
+    Args:
+        degrees: Raw ``windDirection`` value, or ``None``.
+
+    Returns:
+        The conventional bearing in degrees, or ``None``.
+    """
+    deg = _num(degrees)
+    if deg is None:
+        return None
+    return (deg + 180) % 360
+
+
 def _hhmm(seconds: Any) -> str | None:
     """Format seconds-since-midnight as ``HH:MM``.
 
@@ -283,7 +332,9 @@ class HourlyForecast:
         pressure_hpa: Atmospheric pressure in hPa.
         wind_kmh: Wind speed in km/h.
         wind_gust_kmh: Wind gust speed in km/h.
-        wind_direction: Wind direction in degrees.
+        wind_direction: Wind direction in degrees, as the direction the wind
+            comes *from* (meteorological convention); ``None`` when unknown or
+            when the wind is variable.
         wind_direction_text: Localized wind direction text.
     """
 
@@ -311,6 +362,7 @@ class HourlyForecast:
             A populated :class:`HourlyForecast`.
         """
         condition_code, condition = condition_info(item.get("ww"), item.get("dayNight"))
+        wind_text_raw = item.get("windDirectionText")
         return cls(
             hour=str(item.get("hour")),
             temperature_c=_num(item.get("temp")),
@@ -321,8 +373,12 @@ class HourlyForecast:
             pressure_hpa=_num(item.get("pressure")),
             wind_kmh=_num(item.get("windSpeedKm")),
             wind_gust_kmh=_num(item.get("windPeakSpeedKm")),
-            wind_direction=_num(item.get("windDirection")),
-            wind_direction_text=_lang_text(item.get("windDirectionText"), lang),
+            wind_direction=(
+                None
+                if _is_variable_wind(wind_text_raw)
+                else _wind_bearing(item.get("windDirection"))
+            ),
+            wind_direction_text=_lang_text(wind_text_raw, lang),
         )
 
     def to_dict(self) -> dict[str, Any]:
