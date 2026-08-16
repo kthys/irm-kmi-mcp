@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+import itertools
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
+
 import httpx
 import pytest
 
@@ -31,6 +35,23 @@ def test_current_conditions_tool() -> None:
     assert result["uv_index"] == 6.3
     assert result["uv_level"] == "High"
     assert result["sunrise"] == "06:25"
+    assert "commune" not in result  # caller input is not echoed back
+
+
+def test_current_conditions_by_coordinates() -> None:
+    tools = make_tools()
+    result = tools["current_conditions"](latitude=50.4667, longitude=4.8661)
+    assert result["city_name"] == "Namur"
+
+
+def test_location_validation() -> None:
+    tools = make_tools()
+    with pytest.raises(ValueError, match="Provide either"):
+        tools["current_conditions"]()
+    with pytest.raises(ValueError, match="latitude must be between"):
+        tools["current_conditions"](latitude=91, longitude=4.8)
+    with pytest.raises(ValueError, match="longitude must be between"):
+        tools["current_conditions"](latitude=50.4, longitude=181)
 
 
 def test_daily_forecast_default_and_clamping() -> None:
@@ -53,6 +74,17 @@ def test_daily_forecast_language() -> None:
     assert result[0]["text"]
 
 
+def test_daily_forecast_sun_times_and_text_toggle() -> None:
+    tools = make_tools()
+    result = tools["daily_forecast"]("Namur", days=2)
+    assert result[1]["sunrise"] == "06:27"
+    assert result[1]["sunset"] == "21:07"
+    assert "text" in result[0]
+    compact = tools["daily_forecast"]("Namur", days=2, include_text=False)
+    assert all("text" not in day for day in compact)
+    assert compact[1]["temp_max_c"] == result[1]["temp_max_c"]
+
+
 def test_daily_forecast_invalid_language() -> None:
     tools = make_tools()
     with pytest.raises(ValueError, match="Unsupported language"):
@@ -66,6 +98,28 @@ def test_hourly_forecast_clamping() -> None:
     assert len(tools["hourly_forecast"]("Namur", hours=0)) == 1
 
 
+def test_hourly_forecast_has_absolute_times(monkeypatch: pytest.MonkeyPatch) -> None:
+    from irm_kmi_mcp import models
+
+    fixed_now = datetime(2026, 8, 12, 18, 5, tzinfo=ZoneInfo("Europe/Brussels"))
+
+    class _FixedDateTime(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return fixed_now
+
+    monkeypatch.setattr(models, "datetime", _FixedDateTime)
+
+    tools = make_tools()
+    result = tools["hourly_forecast"]("Namur", hours=49)
+    assert all("time" in row for row in result)
+    assert all("hour" not in row for row in result)
+    assert result[0]["time"] == "2026-08-12T18:00+02:00"
+    parsed = [datetime.fromisoformat(row["time"]) for row in result]
+    assert all(b - a == timedelta(hours=1) for a, b in itertools.pairwise(parsed))
+    assert parsed[6].day != parsed[5].day  # crossed the dateShow boundary
+
+
 def test_hourly_forecast_non_numeric_hours_raises_clear_error() -> None:
     tools = make_tools()
     with pytest.raises(ValueError, match="hours must be an integer between 1 and 49"):
@@ -77,7 +131,19 @@ def test_warnings_global() -> None:
     result = tools["warnings"]()
     assert len(result) == 3
     assert result[0]["icon_country"] == "BE"
-    assert result[0]["level"] is None
+    assert "level" not in result[0]  # None fields are pruned to save tokens
+    assert result[0]["type"] == "heat"
+
+
+def test_warnings_global_country_filter() -> None:
+    tools = make_tools()
+    assert len(tools["warnings"](country="BE")) == 1
+    assert len(tools["warnings"](country="nl")) == 1  # case-insensitive
+    assert tools["warnings"](country="LU")[0]["icon_country"] == "LU"
+    with pytest.raises(ValueError, match="Unsupported country"):
+        tools["warnings"](country="FR")
+    with pytest.raises(ValueError, match="only applies when no location"):
+        tools["warnings"]("Namur", country="BE")
 
 
 def test_warnings_for_commune() -> None:
@@ -85,8 +151,50 @@ def test_warnings_for_commune() -> None:
     result = tools["warnings"]("Namur")
     assert len(result) == 1
     assert result[0]["type_name"] == "Heat"
+    assert result[0]["type"] == "heat"
     assert result[0]["level_label"] == "yellow"
     assert result[0]["from_timestamp"] is not None
+
+
+def test_rain_forecast_dry() -> None:
+    tools = make_tools()
+    result = tools["rain_forecast"]("Namur")
+    assert result["unit"] == "mm/10min"
+    assert result["frames"] == []
+    assert result["hint"] == "No rain forecasted shortly"
+
+
+def test_rain_forecast_invalid_language() -> None:
+    tools = make_tools()
+    with pytest.raises(ValueError, match="Unsupported language"):
+        tools["rain_forecast"]("Namur", language="xx")
+
+
+def test_pollen_tool() -> None:
+    tools = make_tools()
+    result = tools["pollen"]()
+    assert result["available"] is True
+    assert result["levels"] == {"grasses": "low", "mugwort": "low"}
+
+
+def test_pollen_unavailable_without_module() -> None:
+    import copy
+
+    import httpx as _httpx
+
+    from tests.conftest import load_fixture
+
+    forecast = copy.deepcopy(load_fixture("forecast_namur.json"))
+    forecast["module"] = [m for m in forecast["module"] if m.get("type") != "svg"]
+
+    def handler(request: _httpx.Request) -> _httpx.Response:
+        if "searchCities" in str(request.url):
+            return _httpx.Response(200, json=load_fixture("search_namur.json"))
+        return _httpx.Response(200, json=forecast)
+
+    client = IrmApiClient(transport=_httpx.MockTransport(handler), cache_ttl=0)
+    tools = build_tools(client)
+    assert tools["pollen"]() == {"available": False}
 
 
 def test_unknown_commune_raises_helpful_error() -> None:

@@ -59,6 +59,71 @@ def test_get_forecasts_returns_raw(client: IrmApiClient) -> None:
     assert "obs" in raw and "for" in raw
 
 
+def test_get_forecasts_coord_sends_coordinates() -> None:
+    calls: list[str] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(str(request.url))
+        return fixture_handler()(request)
+
+    client = IrmApiClient(transport=httpx.MockTransport(handler), cache_ttl=0)
+    raw = client.get_forecasts_coord(50.4667004, 4.8661387)
+    assert raw["cityName"] == "Namur"
+    assert "lat=50.4667" in calls[0]
+    assert "long=4.866139" in calls[0]
+    assert "ins=" not in calls[0]
+
+
+def test_get_svg_returns_text_and_caches() -> None:
+    calls: list[str] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(str(request.url))
+        return fixture_handler()(request)
+
+    client = IrmApiClient(transport=httpx.MockTransport(handler), cache_ttl=60)
+    url = "https://app.meteo.be/services/appv4/?s=getSvg&e=pollen&l=en&k=abc"
+    svg = client.get_svg(url)
+    assert svg.startswith("<?xml")
+    assert "<svg" in svg
+    assert client.get_svg(url) == svg
+    assert len(calls) == 1
+
+
+def test_get_svg_error_is_wrapped(client_factory) -> None:
+    client = client_factory(error=httpx.ConnectError("boom"))
+    with pytest.raises(IrmApiError, match="IRM SVG request failed"):
+        client.get_svg("https://app.meteo.be/services/appv4/?s=getSvg&e=pollen")
+
+
+def test_transient_errors_are_retried() -> None:
+    attempts = {"n": 0}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        attempts["n"] += 1
+        if attempts["n"] < 3:
+            raise httpx.ConnectError("transient")
+        return fixture_handler()(request)
+
+    client = IrmApiClient(transport=httpx.MockTransport(handler), cache_ttl=0)
+    raw = client.get_forecasts("92094")
+    assert raw["cityName"] == "Namur"
+    assert attempts["n"] == 3
+
+
+def test_http_status_errors_are_not_retried() -> None:
+    attempts = {"n": 0}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        attempts["n"] += 1
+        return httpx.Response(500, text="boom")
+
+    client = IrmApiClient(transport=httpx.MockTransport(handler), cache_ttl=0)
+    with pytest.raises(IrmApiError, match="IRM API request failed"):
+        client.get_forecasts("92094")
+    assert attempts["n"] == 1
+
+
 def test_get_global_warnings(client: IrmApiClient) -> None:
     warnings = client.get_global_warnings("fr")
     assert len(warnings) == 3
@@ -109,6 +174,20 @@ def test_http_error_is_wrapped(client_factory) -> None:
     client = client_factory(error=httpx.ConnectError("boom"))
     with pytest.raises(IrmApiError, match="IRM API request failed"):
         client.get_forecasts("92094")
+
+
+def test_expired_cache_entries_are_evicted() -> None:
+    client = IrmApiClient(
+        transport=httpx.MockTransport(fixture_handler()), cache_ttl=0, city_cache_ttl=0
+    )
+    from irm_kmi_mcp import constants
+
+    # Simulate a cache full of expired entries.
+    for i in range(constants._CACHE_EVICTION_THRESHOLD + 10):
+        client._data_cache[("svc", str(i))] = (0.0, {})
+    client.get_forecasts("92094")
+    # Expired entries were dropped; only the fresh one remains.
+    assert len(client._data_cache) == 1
 
 
 def test_api_key_normalized_to_brussels_timezone() -> None:

@@ -20,6 +20,12 @@ USER_AGENT = "kthys/irm-kmi-mcp"
 
 # --- Behaviour ---------------------------------------------------------------
 SUPPORTED_LANGS = ("fr", "nl", "en", "de")
+SUPPORTED_COUNTRIES = ("BE", "NL", "LU")
+BRUSSELS_TZ = "Europe/Brussels"
+DEFAULT_POLLEN_COMMUNE = "Bruxelles"  # pollen levels are national; any city works
+RETRY_ATTEMPTS = 3                    # total attempts per request (incl. the first)
+RETRY_BACKOFF_SECONDS = 0.3
+_CACHE_EVICTION_THRESHOLD = 64        # purge expired entries beyond this cache size
 
 
 def _env_default_lang() -> str:
@@ -137,3 +143,56 @@ WARNING_LEVEL_COLOR: dict[str, str] = {
     "2": "orange",
     "3": "red",
 }
+
+# Warning type id → canonical English slug, mirroring MAP_WARNING_ID_TO_SLUG
+# in jdejaegh/irm-kmi-api.
+WARNING_TYPE_SLUGS: dict[str, str] = {
+    "0": "wind",
+    "1": "rain",
+    "2": "ice_or_snow",
+    "3": "thunder",
+    "7": "fog",
+    "9": "cold",
+    "10": "heat",
+    "12": "thunder_wind_rain",
+    "13": "thunderstorm_strong_gusts",
+    "14": "thunderstorm_large_rainfall",
+    "15": "storm_surge",
+    "17": "coldspell",
+}
+
+# --- Pollen -------------------------------------------------------------------
+# SVG text label → canonical level word. The IRM pollen SVG labels levels with
+# these words; the dot-on-scale fallback maps colors to the same vocabulary
+# (green→none, yellow→low, orange→moderate, red→high, purple→very high).
+POLLEN_TEXT_LEVELS: dict[str, str] = {
+    "null": "none",
+    "none": "none",
+    "low": "low",
+    "moderate": "moderate",
+    "high": "high",
+    "very high": "very high",
+    "active": "active",
+}
+
+POLLEN_COLOR_LEVELS: dict[str, str] = {
+    "green": "none",
+    "yellow": "low",
+    "orange": "moderate",
+    "red": "high",
+    "purple": "very high",
+}
+
+POLLEN_NAMES = frozenset(
+    {"alder", "ash", "birch", "grasses", "hazel", "mugwort", "oak"}
+)
+
+# Relative-x distance (pollen label minus dot centre) → dot color, as measured
+# on the IRM pollen SVG scale. Mirrors PollenParser in jdejaegh/irm-kmi-api.
+POLLEN_DOT_RANGES: tuple[tuple[float, float, str], ...] = (
+    (24, 34, "green"),
+    (13, 23, "yellow"),
+    (-5, 5, "orange"),
+    (-23, -13, "red"),
+    (-34, -24, "purple"),
+)

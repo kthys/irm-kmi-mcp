@@ -2,39 +2,54 @@
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+[![PyPI version](https://img.shields.io/pypi/v/irm-kmi-mcp.svg)](https://pypi.org/project/irm-kmi-mcp/)
 
 An [MCP](https://modelcontextprotocol.io) server exposing **official Belgian weather data** from the
 [Royal Meteorological Institute of Belgium](https://www.meteo.be) (IRM/KMI): observed conditions,
-daily and hourly forecasts, and weather warnings, for MCP clients such as Claude, Hermes or
-Openclaw.
+daily and hourly forecasts, a radar-based rain nowcast, pollen levels and weather warnings, for
+MCP clients such as Claude, Hermes or Openclaw.
 
 ```text
 "What's the weather in Namur?"            →  current_conditions("Namur")
 "Forecast for Oostende, 5 days, in Dutch" →  daily_forecast("Oostende", days=5, language="nl")
-"Any warnings in Belgium right now?"      →  warnings()
+"Will it rain soon in Brussels?"          →  rain_forecast("Bruxelles")
+"How bad is the pollen today?"            →  pollen()
+"Any warnings in Belgium right now?"      →  warnings(country="BE")
 ```
 
 ## Features
 
 - **Observed conditions**: temperature, condition, UV index, sunrise/sunset from the nearest
   IRM weather station.
-- **Daily forecast (1–8 days)**: min/max temperature, condition, wind, precipitation, plus the
-  **official IRM text bulletin** in fr/nl/en/de.
-- **Hourly forecast (1–49 h)**: temperature, precipitation, pressure, wind and gusts.
+- **Daily forecast (1–8 days)**: min/max temperature, condition, wind, precipitation,
+  sunrise/sunset, plus the **official IRM text bulletin** in fr/nl/en/de (can be omitted to
+  save tokens).
+- **Hourly forecast (1–49 h)**: temperature, precipitation, pressure, wind and gusts — every
+  row carries an absolute ISO-8601 timestamp (Brussels time).
+- **Rain nowcast**: radar-based precipitation per 10-minute frame for roughly the next 5 hours;
+  answers "will it rain soon?" far more cheaply than the hourly forecast.
+- **Pollen levels**: official daily pollen levels (grasses, birch, mugwort, …) when in season.
 - **Official weather warnings**: yellow/orange/red alerts, either for a single municipality
-  (with level and validity period) or for the whole country.
-- **Municipality resolution by name**: "Namur", "Bruxelles", "Oostende", … resolved through the
-  IRM's own city search.
-- **Caching**: weather data is cached for 10 minutes, city lookups for 24 hours.
+  (with level and validity period) or country-wide (filterable to BE, NL or LU).
+- **Locations by name or coordinates**: "Namur", "Bruxelles", "Oostende", … resolved through
+  the IRM's own city search, or given directly as WGS84 latitude/longitude.
+- **Token-lean output**: unknown fields are omitted rather than sent as nulls.
+- **Caching & resilience**: weather data is cached for 10 minutes, city lookups for 24 hours;
+  transient network errors are retried automatically.
 
 ## Tools
 
-| Tool                  | Parameters                                       | Returns |
+Every location-taking tool accepts either `commune` (municipality name) or `latitude` +
+`longitude` (WGS84).
+
+| Tool                  | Parameters (besides location)                    | Returns |
 |-----------------------|--------------------------------------------------|---------|
-| `current_conditions`  | `commune`                                        | temperature, condition (ww code + canonical English label), UV index, day/night, sunrise/sunset |
-| `daily_forecast`      | `commune`, `days` (1–8, default 3), `language` (fr/nl/en/de) | per day: temps, condition (ww code + label), wind, precipitation, official text |
-| `hourly_forecast`     | `commune`, `hours` (1–49, default 24)             | per hour: temperature, condition (ww code + label), precipitation, pressure, wind |
-| `warnings`            | `commune` (optional), `language`                 | alert type, text; level + validity for a municipality, per-region level/validity otherwise |
+| `current_conditions`  | —                                                | temperature, condition (ww code + canonical English label), UV index, day/night, sunrise/sunset |
+| `daily_forecast`      | `days` (1–8, default 3), `language` (fr/nl/en/de), `include_text` (default true) | per day: temps, condition (ww code + label), wind, precipitation, sunrise/sunset, official text |
+| `hourly_forecast`     | `hours` (1–49, default 24)                       | per hour: absolute time, temperature, condition (ww code + label), precipitation, pressure, wind |
+| `rain_forecast`       | `language`                                       | unit, official IRM hint, precipitation per 10-min frame (only frames expecting rain) |
+| `pollen`              | —                                                | per-species pollen level (none, active, low, moderate, high, very high), national |
+| `warnings`            | `language`, `country` (BE/NL/LU, country-wide only) | alert type (name + canonical slug), text; level + validity for a municipality, per-region level/validity otherwise |
 
 ## Data source & disclaimer
 

@@ -10,8 +10,9 @@ Endpoints used:
 
 - ``searchCities``   (param ``n``)  → municipality list with ``ins`` codes
 - ``getForecasts``   (param ``ins`` or ``lat``/``long``, ``l``) → obs + daily +
-  hourly + warnings + module
+  hourly + warnings + module + rain-radar animation
 - ``getWarnings``                  → all active warnings for BE/NL/LU
+- ``getSvg``         (full URL from the ``module`` list) → e.g. the pollen SVG
 """
 
 from __future__ import annotations
@@ -28,12 +29,15 @@ from zoneinfo import ZoneInfo
 import httpx
 
 from .constants import (
+    _CACHE_EVICTION_THRESHOLD,
     APP_SECRET,
     BASE_URL,
     CITY_CACHE_TTL,
     DEFAULT_CACHE_TTL,
     DEFAULT_LANG,
     DEFAULT_TIMEOUT,
+    RETRY_ATTEMPTS,
+    RETRY_BACKOFF_SECONDS,
     USER_AGENT,
 )
 
@@ -63,7 +67,8 @@ class IrmApiClient:
     Fetches municipality search results, forecasts and warnings. Responses are
     cached in memory: weather data for ``cache_ttl`` seconds and municipality
     lookups for ``city_cache_ttl`` seconds. Cache keys exclude the ``k``
-    request parameter.
+    request parameter. Transient transport errors are retried a few times with
+    a short backoff, as the unofficial backend can be flaky.
     """
 
     def __init__(
@@ -96,7 +101,6 @@ class IrmApiClient:
         self._city_cache: dict[str, tuple[float, list[City]]] = {}
 
     # -- public API -----------------------------------------------------------
-
     def search_cities(self, query: str, lang: str = DEFAULT_LANG) -> list[City]:
         """Search municipalities by name in Belgium, the Netherlands and Luxembourg.
 
@@ -116,6 +120,7 @@ class IrmApiClient:
             for item in raw
             if isinstance(item, dict) and "id" in item and "name" in item
         ]
+        self._evict_expired(self._city_cache, self._city_cache_ttl)
         self._city_cache[query] = (time.monotonic(), cities)
         return cities
 
@@ -136,6 +141,60 @@ class IrmApiClient:
         if not isinstance(raw, dict):
             raise IrmApiError(f"Unexpected getForecasts response: {type(raw).__name__}")
         return raw
+
+    def get_forecasts_coord(
+        self, latitude: float, longitude: float, lang: str = DEFAULT_LANG
+    ) -> dict[str, Any]:
+        """Fetch observations, forecasts and local warnings for coordinates.
+
+        Args:
+            latitude: WGS84 latitude, rounded to 6 decimals.
+            longitude: WGS84 longitude, rounded to 6 decimals.
+            lang: Response language.
+
+        Returns:
+            The raw ``getForecasts`` response payload.
+
+        Raises:
+            IrmApiError: If the response is not a JSON object.
+        """
+        raw = self._get(
+            "getForecasts",
+            {"lat": str(round(latitude, 6)), "long": str(round(longitude, 6)), "l": lang},
+        )
+        if not isinstance(raw, dict):
+            raise IrmApiError(f"Unexpected getForecasts response: {type(raw).__name__}")
+        return raw
+
+    def get_svg(self, url: str) -> str:
+        """Fetch an SVG document published by the IRM API (e.g. pollen).
+
+        The URL is expected to be a full ``app.meteo.be`` service URL as found
+        in the ``module`` list of a ``getForecasts`` response (it already
+        carries its ``s``/``k`` parameters). Results are cached like weather
+        data.
+
+        Args:
+            url: Full SVG service URL.
+
+        Returns:
+            The SVG document as a string.
+
+        Raises:
+            IrmApiError: If the request fails.
+        """
+        cache_key = ("svg", url)
+        now = time.monotonic()
+        cached = self._data_cache.get(cache_key)
+        if cached and now - cached[0] < self._cache_ttl:
+            return cached[1]
+        try:
+            response = self._request_with_retry(url)
+            text = response.text
+        except httpx.HTTPError as exc:
+            raise IrmApiError(f"IRM SVG request failed: {exc}") from exc
+        self._data_cache[cache_key] = (now, text)
+        return text
 
     def get_global_warnings(self, lang: str = DEFAULT_LANG) -> list[dict[str, Any]]:
         """Fetch all active warnings for Belgium, the Netherlands and Luxembourg.
@@ -212,13 +271,53 @@ class IrmApiClient:
         url = f"{BASE_URL}?{urlencode({**params, 's': service, 'k': self._api_key(service)})}"
         logger.debug("GET %s", url)
         try:
-            response = self._session.get(url)
-            response.raise_for_status()
+            response = self._request_with_retry(url)
             payload: Any = response.json()
         except httpx.HTTPError as exc:
             raise IrmApiError(f"IRM API request failed ({service}): {exc}") from exc
         except ValueError as exc:  # invalid JSON
             raise IrmApiError(f"IRM API returned invalid JSON ({service}): {exc}") from exc
 
+        self._evict_expired(self._data_cache, self._cache_ttl)
         self._data_cache[cache_key] = (now, payload)
         return payload
+
+    def _request_with_retry(self, url: str) -> httpx.Response:
+        """GET ``url``, retrying transient transport errors with a short backoff.
+
+        HTTP status errors are raised immediately (no retry).
+
+        Args:
+            url: Absolute URL to fetch.
+
+        Returns:
+            The successful :class:`httpx.Response`.
+
+        Raises:
+            httpx.HTTPError: When every attempt fails.
+        """
+        for attempt in range(1, RETRY_ATTEMPTS + 1):
+            try:
+                response = self._session.get(url)
+                response.raise_for_status()
+                return response
+            except httpx.TransportError:
+                if attempt == RETRY_ATTEMPTS:
+                    raise
+                logger.debug("Transient IRM API error (attempt %d), retrying", attempt)
+                time.sleep(RETRY_BACKOFF_SECONDS * attempt)
+        raise AssertionError("unreachable")  # pragma: no cover
+
+    @staticmethod
+    def _evict_expired(cache: dict[Any, tuple[float, Any]], ttl: float) -> None:
+        """Drop expired entries once the cache grows beyond the threshold.
+
+        Args:
+            cache: Mapping of key to ``(stored_at, value)`` tuples.
+            ttl: Entry time-to-live, in seconds.
+        """
+        if len(cache) <= _CACHE_EVICTION_THRESHOLD:
+            return
+        now = time.monotonic()
+        for key in [k for k, (stored_at, _) in cache.items() if now - stored_at >= ttl]:
+            del cache[key]
