@@ -174,7 +174,14 @@ def test_pollen_tool() -> None:
     tools = make_tools()
     result = tools["pollen"]()
     assert result["available"] is True
-    assert result["levels"] == {"grasses": "low", "mugwort": "low"}
+    assert result["levels"] == {
+        "grasses": "low",
+        "birch": "low",
+        "mugwort": "moderate",
+        "alder": "very high",
+        "hazel": "high",
+        "oak": "active",
+    }
 
 
 def test_pollen_unavailable_without_module() -> None:

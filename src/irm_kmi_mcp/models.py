@@ -211,9 +211,23 @@ def hourly_times(items: list[dict[str, Any]], now: datetime | None = None) -> li
     """Compute absolute ISO-8601 timestamps for raw hourly-forecast entries.
 
     The API only reports the hour of day (``hour``) and marks day boundaries
-    with ``dateShow`` (``DD/MM``). The first entry is anchored to the current
-    hour in ``Europe/Brussels``; subsequent entries advance one hour at a
-    time, with ``dateShow`` correcting the date when present.
+    with ``dateShow`` (``DD/MM``). The first parseable entry is anchored to the
+    current hour in ``Europe/Brussels``.
+
+    The cursor is kept as an absolute UTC instant and advanced by *real*
+    one-hour steps, rendered back in Brussels time at the end. This keeps
+    timestamps correct across DST transitions, where wall-clock stepping goes
+    wrong: the spring-forward night has no 02:00 and stale offsets would leak
+    into every later row, while the fall-back night repeats 02:00. Whenever
+    the rendered local hour disagrees with the API's own ``hour`` field (or a
+    ``dateShow`` boundary appears), the cursor is re-anchored on the stated
+    wall clock, choosing the occurrence closest to the stepped instant — so
+    the sequence stays aligned whether upstream skips or repeats an hour.
+
+    Known limit: on the fall-back night, if upstream lists the repeated
+    wall-clock hour only once, which of the two occurrences it means cannot
+    be determined from the payload; the first one is assumed and the next
+    unambiguous stated hour re-anchors the sequence.
 
     Args:
         items: Raw entries from the ``for.hourly`` list.
@@ -221,39 +235,65 @@ def hourly_times(items: list[dict[str, Any]], now: datetime | None = None) -> li
 
     Returns:
         One ISO-8601 timestamp (minute precision, Brussels offset) per entry;
-        ``None`` for entries whose hour cannot be parsed.
+        ``None`` for entries whose hour cannot be parsed. The cursor is
+        anchored lazily on the first parseable entry, so unparseable entries
+        simply yield ``None`` without breaking the rest of the sequence.
     """
     tz = ZoneInfo(BRUSSELS_TZ)
+    utc = timezone.utc
     now = now or datetime.now(tz)
     times: list[str | None] = []
-    current: datetime | None = None
-    for index, item in enumerate(items):
+    current: datetime | None = None  # absolute instant, kept in UTC
+    for item in items:
         try:
             hour = int(item.get("hour"))
         except (TypeError, ValueError):
             times.append(None)
             continue
-        if index == 0:
-            current = datetime.combine(now.date(), datetime.min.time(), tzinfo=tz).replace(
-                hour=hour
-            )
-            # The first entry is the current (or a near) hour; if anchoring it
-            # on today lands clearly in the past, it belongs to tomorrow.
-            if current <= now - timedelta(hours=2):
-                current += timedelta(days=1)
+        if current is None:
+            # Anchor on the date whose candidate is nearest to "now": the API
+            # list starts at (or within a few hours of) the current hour, so a
+            # nearest-neighbour pick over yesterday/today/tomorrow handles
+            # start-of-night and past-hour starts alike. Anchoring lazily also
+            # recovers when earlier entries carry an unparseable hour, instead
+            # of crashing or dropping the rest of the sequence.
+            base = datetime.combine(now.date(), datetime.min.time(), tzinfo=tz).replace(hour=hour)
+            candidates = (base - timedelta(days=1), base, base + timedelta(days=1))
+            current = min(candidates, key=lambda candidate: abs(candidate - now)).astimezone(utc)
         else:
-            assert current is not None
-            current = current + timedelta(hours=1)
+            candidate = current + timedelta(hours=1)  # real elapsed time
+            local = candidate.astimezone(tz)
+            rebuilt: datetime | None = None
             date_show = item.get("dateShow")
             if isinstance(date_show, str) and "/" in date_show:
                 try:
                     day, month = (int(part) for part in date_show.split("/", 1))
                 except ValueError:
                     day = month = None
-                if day is not None and (current.day, current.month) != (day, month):
-                    year = current.year + (1 if current.month == 12 and month == 1 else 0)
-                    current = datetime(year, month, day, hour, tzinfo=tz)
-        times.append(current.isoformat(timespec="minutes"))
+                if day is not None and (local.day, local.month) != (day, month):
+                    year = local.year + (1 if local.month == 12 and month == 1 else 0)
+                    rebuilt = datetime(year, month, day, hour, tzinfo=tz)
+            if rebuilt is None and local.hour != hour:
+                # Drift between the stepped instant and the API's own wall
+                # clock (typically across a DST transition): re-anchor on the
+                # stated hour closest to the stepped instant, which resolves
+                # both the skipped hour (spring) and the repeated one (fall).
+                nearby_date = local.date()
+                nearby = (
+                    datetime(
+                        (nearby_date + timedelta(days=offset)).year,
+                        (nearby_date + timedelta(days=offset)).month,
+                        (nearby_date + timedelta(days=offset)).day,
+                        hour,
+                        tzinfo=tz,
+                    )
+                    for offset in (-1, 0, 1)
+                )
+                rebuilt = min(nearby, key=lambda c: abs(c.astimezone(utc) - candidate))
+            if rebuilt is not None:
+                candidate = rebuilt.astimezone(utc)
+            current = candidate
+        times.append(current.astimezone(tz).isoformat(timespec="minutes"))
     return times
 
 

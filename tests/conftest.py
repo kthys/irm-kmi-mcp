@@ -10,12 +10,15 @@ from typing import Any
 import httpx
 import pytest
 
+import irm_kmi_mcp.client as client_mod
 from irm_kmi_mcp.client import IrmApiClient
 
 FIXTURES = pathlib.Path(__file__).parent / "fixtures"
 
 
 def load_fixture(name: str) -> Any:
+    if name.endswith(".svg"):
+        return (FIXTURES / name).read_text(encoding="utf-8")
     return json.loads((FIXTURES / name).read_text(encoding="utf-8"))
 
 
@@ -35,11 +38,23 @@ def fixture_handler(
                 json=search_result if search_result is not None
                 else load_fixture("search_namur.json"),
             )
+        if "getSvg" in url:
+            return httpx.Response(
+                200,
+                text=load_fixture("pollen.svg"),
+                headers={"content-type": "image/svg+xml"},
+            )
         if "getWarnings" in url:
             return httpx.Response(200, json=load_fixture("warnings_global.json"))
         return httpx.Response(200, json=load_fixture("forecast_namur.json"))
 
     return handler
+
+
+@pytest.fixture(autouse=True)
+def _no_retry_backoff(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Keep retrying client tests instant."""
+    monkeypatch.setattr(client_mod, "RETRY_BACKOFF_SECONDS", 0.0)
 
 
 @pytest.fixture

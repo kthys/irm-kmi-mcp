@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Synthetic fixture written for this project's unit tests ONLY.
+     It mimics the *structure* of an IRM/KMI pollen SVG (tspan labels
+     aligned on the x axis + cursor circles on a colour scale) without
+     reproducing any IRM/KMI copyrighted artwork or data. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 60">
+  <!-- grasses: explicit level word below the name; the nearby dot (rel +5,
+       orange) must be IGNORED because the word takes precedence. -->
+  <text><tspan x="100" y="-15"> Grasses</tspan></text>
+  <text><tspan x="100" y="33"> low</tspan></text>
+  <circle cx="95" cy="9" r="4"/>
+
+  <!-- birch: no level word; dot at relative distance +20 -> yellow -> low -->
+  <text><tspan x="200" y="-15"> Birch</tspan></text>
+  <circle cx="180" cy="9" r="4"/>
+
+  <!-- mugwort: no level word; dot at relative distance +5 -> orange ->
+       moderate (inclusive upper bound of the range) -->
+  <text><tspan x="300" y="-15"> Mugwort</tspan></text>
+  <circle cx="295" cy="9" r="4"/>
+
+  <!-- alder: no level word; dot at relative distance -24 -> purple ->
+       very high (inclusive lower bound of the range) -->
+  <text><tspan x="400" y="-15"> Alder</tspan></text>
+  <circle cx="424" cy="9" r="4"/>
+
+  <!-- hazel: no level word; dot at relative distance -13 -> red ->
+       high (inclusive upper bound of the range) -->
+  <text><tspan x="500" y="-15"> Hazel</tspan></text>
+  <circle cx="513" cy="9" r="4"/>
+
+  <!-- oak: no level word; dot far outside every range (-50) -> falls
+       through to the default level "active" -->
+  <text><tspan x="600" y="-15"> Oak</tspan></text>
+  <circle cx="650" cy="9" r="4"/>
+</svg>

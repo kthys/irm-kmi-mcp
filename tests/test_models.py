@@ -98,12 +98,96 @@ def test_hourly_times_anchors_first_entry_to_now() -> None:
     assert times[1] == "2026-08-13T01:00+02:00"
 
 
+def test_hourly_times_anchors_past_midnight_hour_to_yesterday() -> None:
+    # Just past midnight, an entry for 23:00 belongs to *yesterday*, not to
+    # a time 21h in the future.
+    now = datetime(2026, 8, 13, 0, 30, tzinfo=BRUSSELS)
+    times = hourly_times([{"hour": "23"}, {"hour": "0"}], now=now)
+    assert times[0] == "2026-08-12T23:00+02:00"
+    assert times[1] == "2026-08-13T00:00+02:00"
+
+
+def test_hourly_times_keeps_past_hour_on_today() -> None:
+    # The API may start a few hours back; 15:00 at 18:10 is today, not tomorrow.
+    now = datetime(2026, 8, 12, 18, 10, tzinfo=BRUSSELS)
+    times = hourly_times([{"hour": "15"}, {"hour": "16"}], now=now)
+    assert times[0] == "2026-08-12T15:00+02:00"
+    assert times[1] == "2026-08-12T16:00+02:00"
+
+
 def test_hourly_times_tolerates_bad_entries() -> None:
     now = datetime(2026, 8, 12, 12, 0, tzinfo=BRUSSELS)
     times = hourly_times([{"hour": "12"}, {"hour": "boom"}, {"hour": "14"}], now=now)
     assert times[0] == "2026-08-12T12:00+02:00"
     assert times[1] is None
     assert times[2] is not None  # sequence resumes after a bad entry
+
+
+def test_hourly_times_bad_first_entry_does_not_crash() -> None:
+    # Regression: an unparseable first entry used to leave the cursor unset,
+    # making every subsequent entry raise AssertionError.
+    now = datetime(2026, 8, 12, 13, 30, tzinfo=BRUSSELS)
+    times = hourly_times([{"temp": 10}, {"hour": "14"}, {"hour": "15"}], now=now)
+    assert times[0] is None
+    assert times[1] == "2026-08-12T14:00+02:00"  # re-anchors lazily
+    assert times[2] == "2026-08-12T15:00+02:00"
+
+
+def test_hourly_times_bad_middle_entry_recovers() -> None:
+    now = datetime(2026, 8, 12, 13, 30, tzinfo=BRUSSELS)
+    times = hourly_times([{"hour": "14"}, {"temp": 10}, {"hour": "16"}], now=now)
+    assert times[0] == "2026-08-12T14:00+02:00"
+    assert times[1] is None
+    assert times[2] == "2026-08-12T16:00+02:00"  # re-anchored on stated hour
+
+
+def test_hourly_times_spring_forward_skips_nonexistent_hour() -> None:
+    # 2026-03-29: 02:00 CET becomes 03:00 CEST; the wall clock has no 02:00.
+    # The API list skips it (hours ...1, 3, 4...); UTC stepping must land on
+    # the real instants and render the CEST offset from the transition on.
+    now = datetime(2026, 3, 29, 0, 30, tzinfo=BRUSSELS)
+    times = hourly_times([{"hour": "0"}, {"hour": "1"}, {"hour": "3"}, {"hour": "4"}], now=now)
+    assert times[0] == "2026-03-29T00:00+01:00"
+    assert times[1] == "2026-03-29T01:00+01:00"
+    assert times[2] == "2026-03-29T03:00+02:00"  # no phantom 02:00, new offset
+    assert times[3] == "2026-03-29T04:00+02:00"
+
+
+def test_hourly_times_spring_forward_repeated_wall_hour() -> None:
+    # Variant: if upstream emits a placeholder hour 2 that night, no correct
+    # timestamp exists (02:00 never happens). The row collapses onto the next
+    # real instant; the following stated hours keep the sequence aligned.
+    now = datetime(2026, 3, 29, 0, 30, tzinfo=BRUSSELS)
+    times = hourly_times([{"hour": "1"}, {"hour": "2"}, {"hour": "3"}], now=now)
+    assert times[0] == "2026-03-29T01:00+01:00"
+    # The phantom hour has no real instant; it and the next stated hour both
+    # collapse onto 03:00 CEST (duplicate label, monotonic instants).
+    assert times[1] == "2026-03-29T03:00+02:00"
+    assert times[2] == "2026-03-29T03:00+02:00"
+
+
+def test_hourly_times_fall_back_repeated_hour() -> None:
+    # 2026-10-25: 03:00 CEST falls back to 02:00 CET; wall-clock 02:00 happens
+    # twice. With both occurrences listed, each step is one real hour and the
+    # rendered offsets must differ (+02:00 then +01:00).
+    now = datetime(2026, 10, 25, 0, 30, tzinfo=BRUSSELS)
+    times = hourly_times([{"hour": "1"}, {"hour": "2"}, {"hour": "2"}, {"hour": "3"}], now=now)
+    assert times[0] == "2026-10-25T01:00+02:00"
+    assert times[1] == "2026-10-25T02:00+02:00"  # first occurrence (CEST)
+    assert times[2] == "2026-10-25T02:00+01:00"  # repeated occurrence (CET)
+    assert times[3] == "2026-10-25T03:00+01:00"
+
+
+def test_hourly_times_fall_back_skipped_repeat_stays_aligned() -> None:
+    # Variant: upstream lists the ambiguous wall-clock hour once (24 rows for
+    # a 25-hour night). Which 02:00 is meant is indeterminate from the payload;
+    # UTC stepping keeps the first occurrence (+02:00), and the next stated
+    # hour re-anchors the rest of the sequence on the post-transition offset.
+    now = datetime(2026, 10, 25, 0, 30, tzinfo=BRUSSELS)
+    times = hourly_times([{"hour": "1"}, {"hour": "2"}, {"hour": "3"}], now=now)
+    assert times[0] == "2026-10-25T01:00+02:00"
+    assert times[1] == "2026-10-25T02:00+02:00"  # ambiguous row, fold=0 kept
+    assert times[2] == "2026-10-25T03:00+01:00"  # re-anchored on stated hour
 
 
 def test_hourly_wind_direction_normalized() -> None:
@@ -215,10 +299,19 @@ def test_rain_nowcast_without_animation() -> None:
     assert rain_nowcast({"animation": {}}, "en") is None
 
 
-def test_pollen_from_svg_real_fixture() -> None:
+def test_pollen_from_svg_synthetic_fixture() -> None:
+    # Synthetic fixture (no IRM artwork): covers every parser branch —
+    # word match, each colour range of the dot fallback, and the default.
     svg = load_fixture("pollen.svg")
     levels = pollen_from_svg(svg)
-    assert levels == {"grasses": "low", "mugwort": "low"}
+    assert levels == {
+        "grasses": "low",  # explicit level word wins over the nearby dot
+        "birch": "low",  # dot at rel +20  -> yellow
+        "mugwort": "moderate",  # dot at rel +5   -> orange
+        "alder": "very high",  # dot at rel -24  -> purple (inclusive)
+        "hazel": "high",  # dot at rel -13  -> red (inclusive)
+        "oak": "active",  # dot at rel -50  -> no range, default
+    }
 
 
 def test_pollen_from_svg_invalid() -> None:
