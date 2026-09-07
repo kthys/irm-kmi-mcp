@@ -17,6 +17,12 @@ MCP clients such as Claude, Hermes or Openclaw.
 "Any warnings in Belgium right now?"      →  warnings(country="BE")
 ```
 
+<p align="center">                                                                                                                 
+<a href="https://glama.ai/mcp/servers/kthys/irm-kmi-mcp">                                                                          
+<img alt="irm-kmi-mcp on Glama" src="https://glama.ai/mcp/servers/kthys/irm-kmi-mcp/badges/card.svg" />
+</a>                                                                                                                               
+</p>                                                                                                                             
+
 ## Features
 
 - **Observed conditions**: temperature, condition, UV index, sunrise/sunset from the nearest
