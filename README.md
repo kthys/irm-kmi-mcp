@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![PyPI version](https://img.shields.io/pypi/v/irm-kmi-mcp.svg)](https://pypi.org/project/irm-kmi-mcp/)
+[![CI](https://github.com/kthys/irm-kmi-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/kthys/irm-kmi-mcp/actions/workflows/ci.yml)
 
 An [MCP](https://modelcontextprotocol.io) server exposing **official Belgian weather data** from the
 [Royal Meteorological Institute of Belgium](https://www.meteo.be) (IRM/KMI): observed conditions,
@@ -153,15 +154,15 @@ No API keys or configuration required. The daily request key is derived automati
 
 ## Development
 
-Install from source in an editable dev environment:
+Install from source in an editable dev environment (requires [uv](https://docs.astral.sh/uv/)):
 
 ```bash
 git clone https://github.com/kthys/irm-kmi-mcp.git
 cd irm-kmi-mcp
-python3 -m venv .venv
-.venv/bin/pip install -e ".[dev]"
-.venv/bin/pytest
-.venv/bin/ruff check .
+uv venv
+uv pip install -e ".[dev]"
+uv run --no-project pytest
+uv run --no-project ruff check .
 ```
 
 Tests run against recorded API responses (`tests/fixtures/`) with a mocked HTTP transport,
