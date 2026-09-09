@@ -170,6 +170,19 @@ def test_city_cache_avoids_repeat_lookup() -> None:
     assert len(calls) == 1
 
 
+def test_city_cache_is_language_aware() -> None:
+    calls: list[str] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(str(request.url))
+        return fixture_handler()(request)
+
+    client = IrmApiClient(transport=httpx.MockTransport(handler), cache_ttl=0, city_cache_ttl=60)
+    client.search_cities("Namur", lang="fr")
+    client.search_cities("Namur", lang="nl")
+    assert len(calls) == 2
+
+
 def test_http_error_is_wrapped(client_factory) -> None:
     client = client_factory(error=httpx.ConnectError("boom"))
     with pytest.raises(IrmApiError, match="IRM API request failed"):

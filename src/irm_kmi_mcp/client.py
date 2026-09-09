@@ -98,7 +98,7 @@ class IrmApiClient:
         self._cache_ttl = cache_ttl
         self._city_cache_ttl = city_cache_ttl
         self._data_cache: dict[tuple[Any, ...], tuple[float, Any]] = {}
-        self._city_cache: dict[str, tuple[float, list[City]]] = {}
+        self._city_cache: dict[tuple[str, str], tuple[float, list[City]]] = {}
 
     # -- public API -----------------------------------------------------------
     def search_cities(self, query: str, lang: str = DEFAULT_LANG) -> list[City]:
@@ -111,7 +111,7 @@ class IrmApiClient:
         Returns:
             Matching municipalities with their IRM ``ins`` codes.
         """
-        cached = self._city_cache.get(query)
+        cached = self._city_cache.get((query, lang))
         if cached and time.monotonic() - cached[0] < self._city_cache_ttl:
             return cached[1]
         raw = self._get("searchCities", {"n": query, "l": lang})
@@ -121,7 +121,7 @@ class IrmApiClient:
             if isinstance(item, dict) and "id" in item and "name" in item
         ]
         self._evict_expired(self._city_cache, self._city_cache_ttl)
-        self._city_cache[query] = (time.monotonic(), cities)
+        self._city_cache[(query, lang)] = (time.monotonic(), cities)
         return cities
 
     def get_forecasts(self, ins: str, lang: str = DEFAULT_LANG) -> dict[str, Any]:

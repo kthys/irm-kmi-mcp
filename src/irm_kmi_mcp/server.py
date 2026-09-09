@@ -345,7 +345,7 @@ def build_tools(client: IrmApiClient) -> dict[str, Callable[..., Any]]:
             if module.get("type") != "svg":
                 continue
             url = (module.get("data") or {}).get("url") or {}
-            candidate = url.get(DEFAULT_LANG) or url.get("en") or next(iter(url.values()), None)
+            candidate = url.get("en") or url.get(DEFAULT_LANG) or next(iter(url.values()), None)
             if candidate and "pollen" in candidate:
                 svg_url = candidate
                 break

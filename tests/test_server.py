@@ -184,6 +184,53 @@ def test_pollen_tool() -> None:
     }
 
 
+def test_pollen_uses_english_svg_regardless_of_default_lang(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    # pollen_from_svg only understands English labels, so the SVG must be
+    # fetched in English even when IRM_LANG selects another default language.
+    import importlib
+
+    import irm_kmi_mcp.constants
+    import irm_kmi_mcp.server
+    from tests.conftest import load_fixture
+
+    french_svg = (
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 60">'
+        '<text><tspan x="100" y="-15"> Bouleau</tspan></text>'
+        '<text><tspan x="100" y="33"> faible</tspan></text>'
+        "</svg>"
+    )
+    svg_calls: list[str] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        url = str(request.url)
+        if "searchCities" in url:
+            return httpx.Response(200, json=load_fixture("search_namur.json"))
+        if "getSvg" in url:
+            svg_calls.append(url)
+            text = load_fixture("pollen.svg") if "l=en" in url else french_svg
+            return httpx.Response(
+                200, text=text, headers={"content-type": "image/svg+xml"}
+            )
+        return httpx.Response(200, json=load_fixture("forecast_namur.json"))
+
+    monkeypatch.setenv("IRM_LANG", "fr")
+    importlib.reload(irm_kmi_mcp.constants)
+    importlib.reload(irm_kmi_mcp.server)
+    try:
+        assert irm_kmi_mcp.server.DEFAULT_LANG == "fr"
+        client = IrmApiClient(transport=httpx.MockTransport(handler), cache_ttl=0)
+        result = irm_kmi_mcp.server.build_tools(client)["pollen"]()
+    finally:
+        monkeypatch.delenv("IRM_LANG")
+        importlib.reload(irm_kmi_mcp.constants)
+        importlib.reload(irm_kmi_mcp.server)
+
+    assert svg_calls and all("l=en" in url for url in svg_calls)
+    assert result["available"] is True
+
+
 def test_pollen_unavailable_without_module() -> None:
     import copy
 

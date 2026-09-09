@@ -8,12 +8,13 @@ objects.
 from __future__ import annotations
 
 import xml.etree.ElementTree as ET
-import defusedxml.ElementTree as DefusedET
 from dataclasses import asdict, dataclass
 from datetime import datetime, timedelta, timezone
 from statistics import mean
 from typing import Any
 from zoneinfo import ZoneInfo
+
+import defusedxml.ElementTree as DefusedET
 
 from .constants import (
     BRUSSELS_TZ,

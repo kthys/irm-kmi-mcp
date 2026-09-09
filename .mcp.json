@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "irm-kmi-mcp": {
+      "command": "uvx",
+      "args": ["irm-kmi-mcp"]
+    }
+  }
+}
