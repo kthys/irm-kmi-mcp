@@ -203,6 +203,38 @@ def test_expired_cache_entries_are_evicted() -> None:
     assert len(client._data_cache) == 1
 
 
+def test_cache_size_is_capped_even_with_fresh_entries() -> None:
+    import time
+
+    client = IrmApiClient(
+        transport=httpx.MockTransport(fixture_handler()), cache_ttl=60, city_cache_ttl=60
+    )
+    from irm_kmi_mcp import constants
+
+    # Simulate a burst of distinct *fresh* queries: nothing is expired.
+    for i in range(constants._CACHE_EVICTION_THRESHOLD + 10):
+        client._data_cache[("svc", str(i))] = (time.monotonic(), {})
+    client.get_forecasts("92094")
+    # Hard cap enforced: the oldest fresh entries were evicted, not kept
+    # (eviction runs before the insert, so the bound is threshold + 1).
+    assert len(client._data_cache) == constants._CACHE_EVICTION_THRESHOLD + 1
+
+
+def test_get_svg_insert_also_evicts() -> None:
+    import time
+
+    client = IrmApiClient(
+        transport=httpx.MockTransport(fixture_handler()), cache_ttl=60, city_cache_ttl=60
+    )
+    from irm_kmi_mcp import constants
+
+    for i in range(constants._CACHE_EVICTION_THRESHOLD + 10):
+        client._data_cache[("svc", str(i))] = (time.monotonic(), {})
+    url = "https://app.meteo.be/services/appv4/?s=getSvg&e=pollen&l=en&k=abc"
+    client.get_svg(url)
+    assert len(client._data_cache) == constants._CACHE_EVICTION_THRESHOLD + 1
+
+
 def test_api_key_normalized_to_brussels_timezone() -> None:
     # 2024-12-31 23:30 UTC == 2025-01-01 00:30 Brussels (next calendar day).
     # A host whose clock is behind Brussels (the Americas, or even UTC near

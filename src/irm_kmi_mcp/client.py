@@ -18,6 +18,7 @@ Endpoints used:
 from __future__ import annotations
 
 import hashlib
+import heapq
 import logging
 import time
 from dataclasses import dataclass
@@ -193,6 +194,7 @@ class IrmApiClient:
             text = response.text
         except httpx.HTTPError as exc:
             raise IrmApiError(f"IRM SVG request failed: {exc}") from exc
+        self._evict_expired(self._data_cache, self._cache_ttl)
         self._data_cache[cache_key] = (now, text)
         return text
 
@@ -310,7 +312,7 @@ class IrmApiClient:
 
     @staticmethod
     def _evict_expired(cache: dict[Any, tuple[float, Any]], ttl: float) -> None:
-        """Drop expired entries once the cache grows beyond the threshold.
+        """Drop expired entries, then enforce a hard size cap.
 
         Args:
             cache: Mapping of key to ``(stored_at, value)`` tuples.
@@ -321,3 +323,8 @@ class IrmApiClient:
         now = time.monotonic()
         for key in [k for k, (stored_at, _) in cache.items() if now - stored_at >= ttl]:
             del cache[key]
+        excess = len(cache) - _CACHE_EVICTION_THRESHOLD
+        if excess > 0:
+            oldest = heapq.nsmallest(excess, cache.items(), key=lambda kv: kv[1][0])
+            for key, _ in oldest:
+                del cache[key]
