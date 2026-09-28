@@ -211,13 +211,16 @@ def test_cache_size_is_capped_even_with_fresh_entries() -> None:
     )
     from irm_kmi_mcp import constants
 
-    # Simulate a burst of distinct *fresh* queries: nothing is expired.
+    # Simulate a burst of distinct *fresh* queries: nothing is expired, and
+    # timestamps increase with i so the oldest entries are identifiable.
     for i in range(constants._CACHE_EVICTION_THRESHOLD + 10):
-        client._data_cache[("svc", str(i))] = (time.monotonic(), {})
+        client._data_cache[("svc", str(i))] = (time.monotonic() + i * 1e-3, {})
     client.get_forecasts("92094")
     # Hard cap enforced: the oldest fresh entries were evicted, not kept
     # (eviction runs before the insert, so the bound is threshold + 1).
     assert len(client._data_cache) == constants._CACHE_EVICTION_THRESHOLD + 1
+    assert all(("svc", str(i)) not in client._data_cache for i in range(10))
+    assert ("svc", str(constants._CACHE_EVICTION_THRESHOLD + 9)) in client._data_cache
 
 
 def test_get_svg_insert_also_evicts() -> None:

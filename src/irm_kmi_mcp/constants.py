@@ -25,7 +25,7 @@ BRUSSELS_TZ = "Europe/Brussels"
 DEFAULT_POLLEN_COMMUNE = "Bruxelles"  # pollen levels are national; any city works
 RETRY_ATTEMPTS = 3                    # total attempts per request (incl. the first)
 RETRY_BACKOFF_SECONDS = 0.3
-_CACHE_EVICTION_THRESHOLD = 64        # purge expired entries beyond this cache size
+_CACHE_EVICTION_THRESHOLD = 64        # hard cap: drop expired, then oldest entries beyond this size
 
 
 def _env_default_lang() -> str:
