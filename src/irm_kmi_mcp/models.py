@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import xml.etree.ElementTree as ET
 from dataclasses import asdict, dataclass
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from statistics import mean
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -149,7 +149,7 @@ def _iso_timestamp(ts: Any) -> str | None:
         return None
     if isinstance(ts, (int, float)):
         seconds = ts / 1000 if ts > 1e12 else ts
-        return datetime.fromtimestamp(seconds, tz=timezone.utc).isoformat()
+        return datetime.fromtimestamp(seconds, tz=UTC).isoformat()
     return str(ts)
 
 
@@ -242,7 +242,7 @@ def hourly_times(items: list[dict[str, Any]], now: datetime | None = None) -> li
         simply yield ``None`` without breaking the rest of the sequence.
     """
     tz = ZoneInfo(BRUSSELS_TZ)
-    utc = timezone.utc
+    utc = UTC
     now = now or datetime.now(tz)
     times: list[str | None] = []
     current: datetime | None = None  # absolute instant, kept in UTC

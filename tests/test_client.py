@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import hashlib
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from zoneinfo import ZoneInfo
 
 import httpx
@@ -18,14 +18,14 @@ REFERENCE_KEY = "c26bffd382365c869a3d168d92342165"
 
 
 def test_api_key_format() -> None:
-    key = IrmApiClient._api_key("getForecasts", when=datetime(2024, 12, 31, tzinfo=timezone.utc))
+    key = IrmApiClient._api_key("getForecasts", when=datetime(2024, 12, 31, tzinfo=UTC))
     assert key == REFERENCE_KEY
     assert len(key) == 32  # md5 hex digest
 
 
 def test_api_key_changes_daily() -> None:
-    key1 = IrmApiClient._api_key("getForecasts", when=datetime(2024, 12, 31, tzinfo=timezone.utc))
-    key2 = IrmApiClient._api_key("getForecasts", when=datetime(2025, 1, 1, tzinfo=timezone.utc))
+    key1 = IrmApiClient._api_key("getForecasts", when=datetime(2024, 12, 31, tzinfo=UTC))
+    key2 = IrmApiClient._api_key("getForecasts", when=datetime(2025, 1, 1, tzinfo=UTC))
     assert key1 != key2
 
 
@@ -243,7 +243,7 @@ def test_api_key_normalized_to_brussels_timezone() -> None:
     # A host whose clock is behind Brussels (the Americas, or even UTC near
     # midnight) would otherwise derive the previous day's key and fail every
     # request during the daily rollover window.
-    when = datetime(2024, 12, 31, 23, 30, tzinfo=timezone.utc)
+    when = datetime(2024, 12, 31, 23, 30, tzinfo=UTC)
     key = IrmApiClient._api_key("getForecasts", when=when)
     expected = hashlib.md5(f"{APP_SECRET};getForecasts;01/01/2025".encode()).hexdigest()
     assert key == expected
